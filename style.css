@@ -30,10 +30,10 @@ header {
     align-items: center;
     width: max-content;       /* shrink to fit content */
     margin: 40px auto 30px;   /* top margin 40px for floating effect, bottom 30px, centered horizontally */
-    padding: 10px;            /* padding around content */
+    padding: 20px;            /* padding around content */
     background-color: #2f3136;
-    border-radius: 8px;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4); /* optional: shadow for floating effect */
+    border-radius: 40px;
+    box-shadow: 0 5px 8px rgba(0, 0, 0, 0.4); /* optional: shadow for floating effect */
 }
 
 .logo {
@@ -136,6 +136,10 @@ nav a:hover, nav a.active {
     box-shadow: 0 0 10px var(--accent1);
 }
 
+.features-title {
+    justify-content: center;
+}
+
 .feature-card {
     min-width: 250px;
     max-width: 250px;
@@ -153,7 +157,7 @@ nav a:hover, nav a.active {
 
 /* Tilt effect on hover */
 .feature-card:hover {
-    transform: rotateY(10deg) rotateX(5deg) scale(1.05);
+    transform: rotateY(-20deg) rotateX(5deg) scale(1.05);
     box-shadow: 0 10px 30px rgba(79, 209, 197, 0.3);
 }
 
