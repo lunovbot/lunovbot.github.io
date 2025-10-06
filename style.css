@@ -5,9 +5,16 @@
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
+:root {
+    --accent1: #4fd1c5;
+    --secondary-text: #b9bbbe;
+    --card-bg: #2f3136;
+    --card-border: #202225;
+    --neutral: #72767d;
+}
+
 body {
     margin: 0;
-    font-family: "Poppins", sans-serif;
     background-color: #36393f;
     color: #dcddde;
     line-height: 1.6;
@@ -19,7 +26,6 @@ a {
 }
 
 header {
-    width: 60%
     display: flex;
     justify-content: center;
     margin-bottom: 30px;
@@ -27,10 +33,6 @@ header {
     border-radius: 8px;
     padding: 10px;
 }
-
-/* @media (max-width: 900px) {
-    width: 100%
-} */
 
 .logo {
     display: flex;
@@ -179,6 +181,7 @@ nav a:hover, nav a.active {
 }
 
 footer {
+    display: flex;
     justify-content: center;
     align-items: center;
     text-align: center;
@@ -186,3 +189,4 @@ footer {
     color: var(--neutral);
     margin-top: 40px;
 }
+
