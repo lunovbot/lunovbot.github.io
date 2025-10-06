@@ -9,21 +9,19 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <header>
-    <div class="logo">
-      <img class="logo-icon" href="assets/cropped_circle_image.png"></img>
-      <div class="logo-text">Lunov</div>
-    </div>
-
-    <div class="menu-toggle" id="menu-btn">☰</div>
-
-    <nav>
-      <a href="https://lunovbot.github.io/" class="active">Home</a>
-      <a href="https://lunovbot.github.io/commands">Commands</a>
-      <a href="https://lunovbot.github.io/servers">Servers</a>
-      <a href="https://lunovbot.github.io/changelogs">Changelogs</a>
-      <a href="https://lunovbot.github.io/support">Support</a>
-    </nav>
+    <header>
+      <div class="logo">
+        <img class="logo-icon" href="assets/cropped_circle_image.png"></img>
+        <div class="logo-text">Lunov</div>
+      </div>
+      <nav>
+        <a href="https://lunovbot.github.io/" class="active">Home</a>
+        <a href="https://lunovbot.github.io/commands">Commands</a>
+        <a href="https://lunovbot.github.io/servers">Servers</a>
+        <a href="https://lunovbot.github.io/changelogs">Changelogs</a>
+        <a href="https://lunovbot.github.io/support">Support</a>
+      </nav>
+    </header>
 
   <section class="hero">
   <div class="hero-layout">
@@ -57,12 +55,4 @@
     &copy; Lunov Dashboard. All Rights Reserved.
   </footer>
 </body>
-  <script>
-    const menuBtn = document.getElementById('menu-btn');
-    const navMenu = document.getElementById('nav-menu');
-
-    menuBtn.addEventListener('click', () => {
-      navMenu.classList.toggle('active');
-    });
-</script>
 </html>
