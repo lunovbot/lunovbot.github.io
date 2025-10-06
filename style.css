@@ -1,12 +1,12 @@
 :root {
-    --primary-bg: #0b0e14;       /* Dark Navy/Charcoal */
-    --secondary-text: #cbd5e1;   /* Soft Gray */
+    --primary-bg: #f5f7fa;       /* Lighter background */
+    --secondary-text: #1e293b;   /* Darker text for readability */
     --accent1: #4fd1c5;          /* Muted Cyan */
     --accent2: #a78bfa;          /* Soft Purple */
     --neutral: #64748b;           /* Slate Gray */
-    --header-bg: rgba(15, 23, 42, 0.8);
-    --card-bg: #111827;
-    --card-border: #1e293b;
+    --header-bg: rgba(255, 255, 255, 0.9);
+    --card-bg: #ffffff;           /* Light cards */
+    --card-border: #e2e8f0;       /* Light border for cards */
 }
 
 body {
@@ -32,6 +32,7 @@ header {
     position: sticky;
     top: 0;
     z-index: 1000;
+    color: var(--secondary-text);
 }
 
 .logo {
@@ -54,27 +55,27 @@ header {
 }
 
 nav {
- display: flex;
- justify-content: center;
- margin-bottom: 30px;
- background-color: #2f3136;
-   border-radius: 8px;
-   padding: 10px;
-        }
-        
+    display: flex;
+    justify-content: center;
+    margin-bottom: 30px;
+    background-color: #e2e8f0;
+    border-radius: 8px;
+    padding: 10px;
+}
+
 nav a {
-            color: #b9bbbe;
-            text-decoration: none;
-            padding: 10px 20px;
-            margin: 0 10px;
-            border-radius: 4px;
-            transition: all 0.3s;
-        }
-        
- nav a:hover, nav a.active {
-            background-color: #4f545c;
-            color: #ffffff;
-        }
+    color: #1e293b;
+    text-decoration: none;
+    padding: 10px 20px;
+    margin: 0 10px;
+    border-radius: 4px;
+    transition: all 0.3s;
+}
+
+nav a:hover, nav a.active {
+    background-color: var(--accent1);
+    color: #ffffff;
+}
 
 .invite-btn {
     padding: 10px 22px;
@@ -88,26 +89,8 @@ nav a {
 
 .invite-btn:hover {
     background: var(--accent1);
-    color: #0b0e14;
+    color: #fff;
     box-shadow: 0 0 10px var(--accent1);
-}
-
-/* Mobile menu */
-.menu-toggle {
-    display: none;
-    font-size: 1.8rem;
-    color: var(--accent1);
-    cursor: pointer;
-}
-
-header {
-    flex-wrap: wrap;
-    justify-content: space-between;
-    padding: 18px 25px;
-}
-
-.menu-toggle {
-    display: block;
 }
 
 .hero {
@@ -116,6 +99,7 @@ header {
     align-items: center;
     justify-content: center;
     text-align: center;
+    padding: 40px 20px;
 }
 
 .hero-content {
@@ -127,7 +111,7 @@ header {
     font-size: 3rem;
     font-weight: 800;
     color: var(--accent1);
-    text-shadow: 0 0 10px rgba(79, 209, 197, 0.3);
+    text-shadow: 0 0 5px rgba(79, 209, 197, 0.2);
 }
 
 .hero h1 span {
@@ -162,7 +146,7 @@ header {
 
 .btn:hover {
     background: var(--accent1);
-    color: #0b0e14;
+    color: #fff;
     box-shadow: 0 0 10px var(--accent1);
 }
 
@@ -173,7 +157,7 @@ header {
     padding: 25px;
     max-width: 350px;
     text-align: left;
-    box-shadow: 0 0 20px rgba(79, 209, 197, 0.1);
+    box-shadow: 0 4px 10px rgba(79, 209, 197, 0.1);
 }
 
 .card h2 {
