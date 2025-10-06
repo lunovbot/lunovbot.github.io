@@ -241,53 +241,10 @@ nav.active {
       width: 80%;
     }
   }
-    
-    main {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 20px;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 20px;
-    }
 
-    .card {
-      background: var(--secondary-text);
-      color: var(--primary-bg);
-      padding: 20px;
-      border-radius: 14px;
-      border: 1px solid var(--neutral);
-      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
-      transition: transform 0.2s, box-shadow 0.2s;
-    }
-
-    .card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
-    }
-
-    .card h2 {
-      margin-top: 0;
-      color: var(--accent1);
-    }
-
-    .cta-btn {
-      display: inline-block;
-      padding: 12px 20px;
-      background: var(--accent1);
-      border-radius: 12px;
-      font-weight: 700;
-      color: var(--primary-bg);
-      margin-top: 12px;
-      cursor: pointer;
-      transition: background 0.3s;
-    }
-
-    .cta-btn:hover {
-      background: var(--accent2);
-    }
-
-    footer {
+footer {
+      justify-content: center;
+      align-items: center;
       text-align: center;
       padding: 20px;
       color: var(--neutral);
