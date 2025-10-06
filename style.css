@@ -19,8 +19,12 @@ a {
 }
 
 header {
+    display: flex;
     justify-content: center;
-    width: 60%;
+    margin-bottom: 30px;
+    background-color: #2f3136;
+    border-radius: 8px;
+    padding: 10px;
 }
 
 @media (max-width: 900px) {
@@ -38,15 +42,6 @@ header {
     height: 38px;
     border-radius: 50%;
     display: flex;
-}
-
-nav {
-    display: flex;
-    justify-content: center;
-    margin-bottom: 30px;
-    background-color: #2f3136;
-    border-radius: 8px;
-    padding: 10px;
 }
 
 nav a {
