@@ -43,6 +43,8 @@ header {
 .logo-icon {
     border-radius: 50%;
     display: flex;
+    height: 50px;
+    width: 38px;
 }
 
 nav a {
@@ -130,6 +132,66 @@ nav a:hover, nav a.active {
     background: var(--accent1);
     color: #fff;
     box-shadow: 0 0 10px var(--accent1);
+}
+
+.features {
+    padding: 50px 20px;
+    background-color: #2f3136;
+    overflow: hidden;
+}
+
+.features-title {
+    text-align: center;
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--accent1);
+    margin-bottom: 30px;
+}
+
+.features-container {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+}
+
+.features-slider {
+    display: flex;
+    gap: 20px;
+    animation: slide-left 20s linear infinite;
+}
+
+.feature-card {
+    min-width: 250px;
+    max-width: 250px;
+    background-color: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 20px;
+    padding: 20px;
+    text-align: center;
+    color: var(--secondary-text);
+    box-shadow: 0 4px 10px rgba(79, 209, 197, 0.1);
+    flex-shrink: 0;
+}
+
+.feature-card h3 {
+    color: var(--accent1);
+    margin-bottom: 10px;
+    font-size: 1.2rem;
+}
+
+.feature-card p {
+    font-size: 0.95rem;
+    line-height: 1.4;
+}
+
+/* Animation */
+@keyframes slide-left {
+    0% {
+        transform: translateX(100%);
+    }
+    100% {
+        transform: translateX(-100%);
+    }
 }
 
 .card {
