@@ -6,7 +6,7 @@
       --neutral: #334155; /* Slate Gray */
     }
 
-    body {
+body {
       margin: 0;
       font-family: Inter, system-ui, sans-serif;
       /* background: var(--primary-bg);
@@ -16,9 +16,9 @@
       color: #fff;
     }
 
-    a { text-decoration: none; color: inherit; }
+a { text-decoration: none; color: inherit; }
 
-     header {
+header {
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -31,13 +31,13 @@
       z-index: 1000;
     }
 
-    .logo {
+.logo {
     display: flex;
     align-items: center;
     gap: 10px;
   }
 
-  .logo-icon {
+.logo-icon {
     width: 38px;
     height: 38px;
     border-radius: 50%;
@@ -50,19 +50,19 @@
     box-shadow: 0 0 20px rgba(0, 229, 255, 0.4);
   }
 
-  .logo-text {
+.logo-text {
     font-size: 1.4rem;
     font-weight: 700;
     color: #00e5ff;
   }
 
-  nav {
+nav {
     display: flex;
     align-items: center;
     gap: 25px;
   }
 
-  nav a {
+nav a {
     text-decoration: none;
     color: #b5c6d3;
     font-weight: 500;
@@ -71,7 +71,7 @@
     position: relative;
   }
 
-  nav a::after {
+nav a::after {
     content: "";
     position: absolute;
     left: 0;
@@ -82,15 +82,15 @@
     transition: width 0.3s ease;
   }
 
-  nav a:hover::after {
+nav a:hover::after {
     width: 100%;
   }
 
-  nav a:hover {
+nav a:hover {
     color: #00e5ff;
   }
 
-  .invite-btn {
+.invite-btn {
     padding: 10px 22px;
     border-radius: 8px;
     border: 1px solid #00e5ff;
@@ -100,14 +100,14 @@
     transition: 0.25s;
   }
 
-  .invite-btn:hover {
+.invite-btn:hover {
     background: #00e5ff;
     color: #000;
     box-shadow: 0 0 15px #00e5ff;
   }
 
   /* Mobile menu */
-  .menu-toggle {
+.menu-toggle {
     display: none;
     font-size: 1.8rem;
     color: #00e5ff;
@@ -222,7 +222,7 @@
       text-decoration: none;
     }
 
-  .card a:hover {
+        .card a:hover {
     text-decoration: underline;
   }
 
