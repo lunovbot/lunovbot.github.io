@@ -27,18 +27,13 @@ a {
 
 header {
     display: flex;
-    justify-content: center; /* centers the header on the page */
     align-items: center;
-    margin-bottom: 30px;
+    width: max-content;       /* shrink to fit content */
+    margin: 40px auto 30px;   /* top margin 40px for floating effect, bottom 30px, centered horizontally */
+    padding: 10px;            /* padding around content */
     background-color: #2f3136;
     border-radius: 8px;
-    padding: 10px; /* vertical padding */
-    
-    width: max-content; /* width matches content */
-    margin-left: auto;  /* center horizontally */
-    margin-right: auto;
-    padding-left: 10px; /* extra space beyond content */
-    padding-right: 10px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4); /* optional: shadow for floating effect */
 }
 
 .logo {
