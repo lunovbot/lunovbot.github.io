@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lunov Bot - Changelogs</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #36393f;
+            color: #dcddde;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #4f545c;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            color: #ffffff;
+            margin-bottom: 10px;
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            color: #b9bbbe;
+        }
+        
+        nav {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 30px;
+            background-color: #2f3136;
+            border-radius: 8px;
+            padding: 10px;
+        }
+        
+        nav a {
+            color: #b9bbbe;
+            text-decoration: none;
+            padding: 10px 20px;
+            margin: 0 10px;
+            border-radius: 4px;
+            transition: all 0.3s;
+        }
+        
+        nav a:hover, nav a.active {
+            background-color: #4f545c;
+            color: #ffffff;
+        }
+        
+        .pagination-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding: 10px 0;
+            border-bottom: 1px solid #4f545c;
+        }
+        
+        .range-selector {
+            display: flex;
+            align-items: center;
+        }
+        
+        .range-selector select {
+            background-color: #2f3136;
+            color: #dcddde;
+            border: 1px solid #4f545c;
+            border-radius: 4px;
+            padding: 5px 10px;
+            margin-left: 10px;
+        }
+        
+        .changelog-list {
+            background-color: #2f3136;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .changelog-item {
+            padding: 15px;
+            margin-bottom: 15px;
+            background-color: #36393f;
+            border-radius: 6px;
+            border-left: 4px solid #7289da;
+        }
+        
+        .changelog-item h3 {
+            color: #ffffff;
+            margin-bottom: 10px;
+        }
+        
+        .changelog-item ul {
+            padding-left: 20px;
+        }
+        
+        .changelog-item li {
+            margin-bottom: 5px;
+        }
+        
+        .pagination {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 20px;
+        }
+        
+        .pagination button {
+            background-color: #7289da;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            padding: 8px 16px;
+            margin: 0 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .pagination button:hover {
+            background-color: #5b73c4;
+        }
+        
+        .pagination button:disabled {
+            background-color: #4f545c;
+            cursor: not-allowed;
+        }
+        
+        .page-numbers {
+            display: flex;
+            margin: 0 10px;
+        }
+        
+        .page-number {
+            padding: 8px 12px;
+            margin: 0 2px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .page-number:hover {
+            background-color: #4f545c;
+        }
+        
+        .page-number.active {
+            background-color: #7289da;
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #4f545c;
+            color: #72767d;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Changelogs!</h1>
+            <p class="subtitle">Find all Lunov bot commands and information you need</p>
+        </header>
+        
+        <nav>
+            <a href="#" class="active">Home</a>
+            <a href="#">Changelogs</a>
+            <a href="#">Servers</a>
+            <a href="#">Account</a>
+        </nav>
+        
+        <div class="pagination-info">
+            <div class="range-selector">
+                <span>Range per page:</span>
+                <select id="itemsPerPage">
+                    <option value="10">10</option>
+                    <option value="20">20</option>
+                    <option value="50">50</option>
+                </select>
+            </div>
+            <div id="pageInfo">1–10 of 161</div>
+        </div>
+        
+        <div class="changelog-list" id="changelogList">
+            <!-- Changelog items will be dynamically generated here -->
+        </div>
+        
+        <div class="pagination">
+            <button id="prevPage" disabled>Previous</button>
+            <div class="page-numbers" id="pageNumbers">
+                <!-- Page numbers will be dynamically generated here -->
+            </div>
+            <button id="nextPage">Next</button>
+        </div>
+        
+        <footer>
+            <p>Lunov Bot &copy; 2025. All rights reserved.</p>
+        </footer>
+    </div>
+
+    <script>
+        // Sample changelog data
+        const changelogData = [
+            {
+                id: 1,
+                title: "Version 2.1.0 - Enhanced Moderation",
+                date: "October 5, 2025",
+                changes: [
+                    "Added auto-moderation for spam detection",
+                    "Improved ban command with reason logging",
+                    "Fixed issue with mute permissions"
+                ]
+            },
+            {
+                id: 2,
+                title: "Version 2.0.5 - Bug Fixes",
+                date: "October 1, 2025",
+                changes: [
+                    "Fixed music playback issues",
+                    "Resolved database connection problems",
+                    "Improved error handling for API requests"
+                ]
+            },
+            {
+                id: 3,
+                title: "Version 2.0.0 - Major Update",
+                date: "September 25, 2025",
+                changes: [
+                    "Complete UI overhaul",
+                    "Added slash command support",
+                    "Improved performance and stability",
+                    "New economy system with shops"
+                ]
+            },
+            {
+                id: 4,
+                title: "Version 1.9.3 - Music Features",
+                date: "September 18, 2025",
+                changes: [
+                    "Added Spotify integration",
+                    "Improved queue management",
+                    "Fixed volume control issues"
+                ]
+            },
+            {
+                id: 5,
+                title: "Version 1.9.0 - Economy System",
+                date: "September 10, 2025",
+                changes: [
+                    "Implemented currency system",
+                    "Added daily rewards",
+                    "Created gambling commands"
+                ]
+            },
+            {
+                id: 6,
+                title: "Version 1.8.5 - Moderation Tools",
+                date: "September 5, 2025",
+                changes: [
+                    "Added warning system",
+                    "Improved log channel functionality",
+                    "Fixed permission issues"
+                ]
+            },
+            {
+                id: 7,
+                title: "Version 1.8.0 - Utility Commands",
+                date: "August 28, 2025",
+                changes: [
+                    "Added weather command",
+                    "Implemented calculator function",
+                    "Created reminder system"
+                ]
+            },
+            {
+                id: 8,
+                title: "Version 1.7.2 - Performance Improvements",
+                date: "August 20, 2025",
+                changes: [
+                    "Reduced memory usage",
+                    "Improved response times",
+                    "Fixed memory leaks"
+                ]
+            },
+            {
+                id: 9,
+                title: "Version 1.7.0 - Fun Commands",
+                date: "August 15, 2025",
+                changes: [
+                    "Added meme generator",
+                    "Implemented 8ball command",
+                    "Created trivia system"
+                ]
+            },
+            {
+                id: 10,
+                title: "Version 1.6.5 - Bug Fixes",
+                date: "August 10, 2025",
+                changes: [
+                    "Fixed role assignment issues",
+                    "Resolved message deletion problems",
+                    "Improved error messages"
+                ]
+            }
+        ];
+
+        // Pagination variables
+        let currentPage = 1;
+        let itemsPerPage = 10;
+        const totalItems = 161; // Total number of changelog entries
+
+        // DOM elements
+        const changelogList = document.getElementById('changelogList');
+        const pageInfo = document.getElementById('pageInfo');
+        const prevPageBtn = document.getElementById('prevPage');
+        const nextPageBtn = document.getElementById('nextPage');
+        const pageNumbers = document.getElementById('pageNumbers');
+        const itemsPerPageSelect = document.getElementById('itemsPerPage');
+
+        // Initialize the page
+        function init() {
+            renderChangelogs();
+            updatePagination();
+            setupEventListeners();
+        }
+
+        // Render changelogs for the current page
+        function renderChangelogs() {
+            changelogList.innerHTML = '';
+            
+            // Calculate start and end indices for current page
+            const startIndex = (currentPage - 1) * itemsPerPage;
+            const endIndex = Math.min(startIndex + itemsPerPage, changelogData.length);
+            
+            // Create changelog items
+            for (let i = startIndex; i < endIndex; i++) {
+                const changelog = changelogData[i];
+                if (!changelog) break;
+                
+                const changelogItem = document.createElement('div');
+                changelogItem.className = 'changelog-item';
+                
+                const changesList = changelog.changes.map(change => `<li>${change}</li>`).join('');
+                
+                changelogItem.innerHTML = `
+                    <h3>${changelog.title}</h3>
+                    <p><strong>Date:</strong> ${changelog.date}</p>
+                    <ul>
+                        ${changesList}
+                    </ul>
+                `;
+                
+                changelogList.appendChild(changelogItem);
+            }
+            
+            // Update page info
+            const startItem = (currentPage - 1) * itemsPerPage + 1;
+            const endItem = Math.min(currentPage * itemsPerPage, totalItems);
+            pageInfo.textContent = `${startItem}–${endItem} of ${totalItems}`;
+        }
+
+        // Update pagination controls
+        function updatePagination() {
+            const totalPages = Math.ceil(totalItems / itemsPerPage);
+            
+            // Update previous/next buttons
+            prevPageBtn.disabled = currentPage === 1;
+            nextPageBtn.disabled = currentPage === totalPages;
+            
+            // Update page numbers
+            pageNumbers.innerHTML = '';
+            
+            // Always show first page
+            addPageNumber(1);
+            
+            // Show ellipsis if needed
+            if (currentPage > 3) {
+                const ellipsis = document.createElement('span');
+                ellipsis.textContent = '...';
+                ellipsis.className = 'page-number';
+                pageNumbers.appendChild(ellipsis);
+            }
+            
+            // Show current page and neighbors
+            for (let i = Math.max(2, currentPage - 1); i <= Math.min(totalPages - 1, currentPage + 1); i++) {
+                addPageNumber(i);
+            }
+            
+            // Show ellipsis if needed
+            if (currentPage < totalPages - 2) {
+                const ellipsis = document.createElement('span');
+                ellipsis.textContent = '...';
+                ellipsis.className = 'page-number';
+                pageNumbers.appendChild(ellipsis);
+            }
+            
+            // Always show last page if there's more than one page
+            if (totalPages > 1) {
+                addPageNumber(totalPages);
+            }
+        }
+
+        // Add a page number to the pagination
+        function addPageNumber(page) {
+            const pageNumber = document.createElement('span');
+            pageNumber.textContent = page;
+            pageNumber.className = 'page-number' + (page === currentPage ? ' active' : '');
+            pageNumber.addEventListener('click', () => {
+                currentPage = page;
+                renderChangelogs();
+                updatePagination();
+            });
+            pageNumbers.appendChild(pageNumber);
+        }
+
+        // Set up event listeners
+        function setupEventListeners() {
+            prevPageBtn.addEventListener('click', () => {
+                if (currentPage > 1) {
+                    currentPage--;
+                    renderChangelogs();
+                    updatePagination();
+                }
+            });
+            
+            nextPageBtn.addEventListener('click', () => {
+                const totalPages = Math.ceil(totalItems / itemsPerPage);
+                if (currentPage < totalPages) {
+                    currentPage++;
+                    renderChangelogs();
+                    updatePagination();
+                }
+            });
+            
+            itemsPerPageSelect.addEventListener('change', () => {
+                itemsPerPage = parseInt(itemsPerPageSelect.value);
+                currentPage = 1;
+                renderChangelogs();
+                updatePagination();
+            });
+        }
+
+        // Initialize the page when loaded
+        document.addEventListener('DOMContentLoaded', init);
+    </script>
+</body>
+</html>
