@@ -136,57 +136,41 @@ nav a:hover, nav a.active {
     box-shadow: 0 0 10px var(--accent1);
 }
 
-.features {
-    padding: 50px 20px;
-    background-color: #2f3136;
-    overflow: hidden;
-}
-
-.features-title {
-    text-align: center;
-    font-size: 2rem;
-    font-weight: 700;
-    color: var(--accent1);
-    margin-bottom: 30px;
-}
-
-.features-container {
-    position: relative;
-    width: 100%;
-    overflow: hidden;
-}
-
-.features-slider {
-    display: flex;
-    gap: 20px;
-    animation: slide-left 20s linear infinite;
-}
-
 .feature-card {
     min-width: 250px;
     max-width: 250px;
+    height: 350px; /* taller card */
     background-color: var(--card-bg);
     border: 1px solid var(--card-border);
     border-radius: 20px;
-    padding: 20px;
+    padding: 30px 20px;
     text-align: center;
     color: var(--secondary-text);
     box-shadow: 0 4px 10px rgba(79, 209, 197, 0.1);
     flex-shrink: 0;
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
 }
 
-.feature-card h3 {
-    color: var(--accent1);
-    margin-bottom: 10px;
-    font-size: 1.2rem;
+/* Tilt effect on hover */
+.feature-card:hover {
+    transform: rotateY(10deg) rotateX(5deg) scale(1.05);
+    box-shadow: 0 10px 30px rgba(79, 209, 197, 0.3);
 }
 
-.feature-card p {
-    font-size: 0.95rem;
-    line-height: 1.4;
+/* Emoji above title */
+.feature-emoji {
+    font-size: 2rem;
+    margin-bottom: 15px;
 }
 
-/* Animation */
+/* Slow down slider animation */
+.features-slider {
+    display: flex;
+    gap: 20px;
+    animation: slide-left 60s linear infinite; /* slower scroll */
+}
+
+/* Adjust keyframes for smooth looping */
 @keyframes slide-left {
     0% {
         transform: translateX(100%);
