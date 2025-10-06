@@ -1,3 +1,10 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
 :root {
     --primary-bg: #f5f7fa;       /* Lighter background */
     --secondary-text: #1e293b;   /* Darker text for readability */
@@ -12,8 +19,9 @@
 body {
     margin: 0;
     font-family: "Poppins", sans-serif;
-    background: var(--primary-bg);
-    color: var(--secondary-text);
+    background-color: #36393f;
+    color: #dcddde;
+    line-height: 1.6;
 }
 
 a { 
@@ -45,24 +53,24 @@ header {
 
 nav {
     display: flex;
-    justify-content: center;       /* Center links */
-    background-color: #e2e8f0;     /* Light background like changelogs page */
-    border-radius: 8px;            /* Rounded corners */
-    padding: 10px;
+    justify-content: center;
     margin-bottom: 30px;
+    background-color: #2f3136;
+    border-radius: 8px;
+    padding: 10px;
 }
 
 nav a {
-    color: #1e293b;                /* Dark text for readability */
+    color: #b9bbbe;
     text-decoration: none;
     padding: 10px 20px;
     margin: 0 10px;
     border-radius: 4px;
     transition: all 0.3s;
 }
-
+        
 nav a:hover, nav a.active {
-    background-color: var(--accent1);
+    background-color: #4f545c;
     color: #ffffff;
 }
 
