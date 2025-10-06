@@ -5,17 +5,6 @@
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-:root {
-    --primary-bg: #f5f7fa;       /* Lighter background */
-    --secondary-text: #1e293b;   /* Darker text for readability */
-    --accent1: #4fd1c5;          /* Muted Cyan */
-    --accent2: #a78bfa;          /* Soft Purple */
-    --neutral: #64748b;           /* Slate Gray */
-    --header-bg: rgba(255, 255, 255, 0.9);
-    --card-bg: #ffffff;           /* Light cards */
-    --card-border: #e2e8f0;       /* Light border for cards */
-}
-
 body {
     margin: 0;
     font-family: "Poppins", sans-serif;
@@ -34,7 +23,7 @@ header {
     width: 60%;
 }
 
-@media (min-width: 900px) {
+@media (max-width: 900px) {
     width: 100%
 }
 
