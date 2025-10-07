@@ -17,71 +17,69 @@
 }
 
 * { margin:0; padding:0; box-sizing:border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
-body { background: var(--hero-bg); color: #dcddde; line-height:1.6; overflow-x:hidden; scroll-behavior:smooth; }
+body { background: var(--hero-bg); color: #dcddde; line-height: 1.6; overflow-x:hidden; scroll-behavior: smooth; }
+a { text-decoration: none; color: inherit; }
 
 header {
-  display:flex; align-items:center; justify-content:space-between;
-  width:90%; max-width:1200px; margin:20px auto 30px; padding:15px 30px;
-  background-color: rgba(47,49,54,0.9); border-radius:40px; backdrop-filter:blur(8px);
-  box-shadow:0 4px 15px rgba(0,0,0,0.3); position:relative; z-index:1000;
+  display: flex; align-items:center; justify-content:space-between;
+  width: 90%; max-width:1200px; margin: 20px auto 30px; padding: 15px 30px;
+  background-color: rgba(47,49,54,0.9); border-radius:40px; backdrop-filter: blur(8px);
+  box-shadow: 0 4px 15px rgba(0,0,0,0.3); position:relative; z-index:1000;
 }
 .logo { display:flex; align-items:center; gap:10px; }
 .logo-icon { border-radius:50%; height:38px; width:38px; transform:rotate(-10deg); transition: transform 0.5s; }
-.logo:hover .logo-icon { transform: rotate(10deg) scale(1.1); }
-.logo-text a { color:#fff; font-weight:600; font-size:1.2rem; text-decoration:none; }
-nav { display:flex; gap:10px; }
-nav a { color:#b9bbbe; padding:8px 12px; margin:0 6px; border-radius:6px; font-weight:500; text-decoration:none; transition: all 0.3s ease; }
-nav a:hover, nav a.active { background-color: var(--accent1); color:#fff; }
-.account-btn { padding:6px 18px; border-radius:12px; border:1px solid var(--accent1); background-color: var(--accent1); color:#fff; font-weight:500; margin-left:10px; transition: all 0.3s ease; box-shadow:0 0 8px var(--accent1); }
-.account-btn:hover { background-color:#fff; color:var(--accent1); transform: scale(1.1); }
+.logo:hover .logo-icon { transform:rotate(10deg) scale(1.1); }
+.logo-text a { color:#fff; font-weight:600; font-size:1.2rem; }
 
-.hamburger { display:none; flex-direction:column; cursor:pointer; gap:5px; }
+nav { display:flex; gap:10px; }
+nav a { color:#b9bbbe; padding:8px 12px; margin:0 6px; border-radius:6px; transition: all 0.3s; font-weight:500; }
+nav a:hover, nav a.active { background: var(--accent1); color:#fff; }
+.account-btn { padding:6px 18px; border-radius:12px; border:1px solid var(--accent1); background:var(--accent1); color:#fff; font-weight:500; margin-left:10px; transition:all 0.3s; }
+.account-btn:hover { background:#fff; color:var(--accent1); transform: scale(1.1); }
+
+.hamburger { display:none; flex-direction:column; gap:5px; cursor:pointer; }
 .hamburger div { width:25px; height:3px; background:#b9bbbe; border-radius:2px; transition:all 0.3s; }
 
 .sidebar {
-  position:fixed; top:0; left:-260px; width:260px; height:100%;
+  position: fixed; top:0; left:-260px; width:260px; height:100%;
   background: rgba(47,49,54,0.95); backdrop-filter:blur(8px); border-right:1px solid #202225;
   padding:60px 20px; display:flex; flex-direction:column; gap:20px; transition:left 0.3s; z-index:1100;
 }
 .sidebar.active { left:0; }
-.sidebar a { color:#b9bbbe; text-decoration:none; font-weight:500; padding:10px; border-radius:10px; transition: all 0.3s; }
-.sidebar a:hover, .sidebar a.active { background: var(--accent1); color:#fff; }
+.sidebar a { color:#b9bbbe; font-weight:500; padding:10px; border-radius:10px; transition:all 0.3s; }
+.sidebar a:hover, .sidebar a.active { background:var(--accent1); color:#fff; }
 
 .overlay {
-  display:none; position:fixed; top:0; left:0; width:100%; height:100%;
-  background: rgba(0,0,0,0.4); z-index:1050; transition: opacity 0.3s;
+  display:none; position:fixed; top:0; left:0; width:100%; height:100%; background: rgba(0,0,0,0.4); z-index:1050; transition:opacity 0.3s;
 }
 .overlay.active { display:block; }
 
-.c-head { text-align:center; margin-bottom:50px; }
-.c-head h1 { font-size:3rem; background: linear-gradient(90deg, var(--accent1), var(--accent2)); -webkit-background-clip:text; color:transparent; margin-bottom:10px; }
-.c-head p { color: var(--secondary-text); font-size:1.2rem; }
+h1 { text-align:center; font-size:3rem; background: linear-gradient(90deg,var(--accent1),var(--accent2)); -webkit-background-clip:text; color:transparent; margin:30px 0 15px; }
+p.subtitle { text-align:center; color: var(--secondary-text); font-size:1.2rem; margin-bottom:50px; }
 
 /* Command Cards */
-.commands-list { width:90%; max-width:900px; margin:0 auto; display:flex; flex-direction:column; gap:20px; }
-.command-item { background: var(--card-bg); border:1px solid var(--card-border); border-radius:15px; padding:20px; transition: all 0.3s ease; box-shadow:0 6px 20px rgba(79,209,197,0.1); }
-.command-item:hover { border-color: var(--accent1); box-shadow:0 25px 60px rgba(79,209,197,0.2); transform: translateY(-5px); }
-.command-item h3 { color:#fff; margin-bottom:8px; }
-.command-item p { color: var(--secondary-text); margin-bottom:12px; }
-.command-item ul { padding-left:20px; color: var(--secondary-text); }
-.command-item ul li { margin-bottom:5px; }
+.command-category {
+  width:90%; max-width:900px; margin:0 auto 30px; background:var(--card-bg); border:1px solid var(--card-border); border-radius:15px; overflow:hidden; box-shadow: 0 6px 20px rgba(79,209,197,0.1); transition: all 0.3s ease;
+}
+.category-header {
+  padding:20px; cursor:pointer; display:flex; justify-content:space-between; align-items:center; background: rgba(79,209,197,0.1);
+  font-weight:600; font-size:1.2rem; color:#fff;
+}
+.category-header:hover { background: var(--accent1); color:#fff; }
+.category-header span { transition: transform 0.3s; }
+.category-header.active span { transform: rotate(90deg); }
 
-.pagination { display:flex; justify-content:center; align-items:center; gap:10px; margin:40px 0; flex-wrap:wrap; }
-.pagination button { background-color: var(--accent1); color:#fff; border:none; border-radius:6px; padding:8px 16px; cursor:pointer; transition:all 0.3s; }
-.pagination button:hover { background-color: var(--accent2); }
-.pagination button:disabled { background-color:#72767d; cursor:not-allowed; }
-.page-numbers { display:flex; gap:5px; }
-.page-number { padding:8px 12px; border-radius:6px; cursor:pointer; transition:all 0.3s; }
-.page-number:hover { background-color:#4f545c; }
-.page-number.active { background-color: var(--accent2); color:#fff; }
+.category-body { display:none; padding:20px; color: var(--secondary-text); }
+.category-body ul { list-style: disc; padding-left:20px; }
+.category-body ul li { margin-bottom:8px; }
 
 footer {
-  background-color: rgba(47,49,54,0.95); backdrop-filter: blur(8px); padding:25px 20px; text-align:center; box-shadow:0 -4px 20px rgba(0,0,0,0.2); color: var(--neutral);
+  background-color: rgba(47,49,54,0.95); backdrop-filter: blur(8px); padding:25px 20px; text-align:center; color: var(--neutral); font-size:0.9rem; margin-top:50px;
 }
-footer .footer-links { display:flex; gap:20px; justify-content:center; flex-wrap:wrap; }
-footer .footer-links a { color:var(--accent1); transition: color 0.3s, transform 0.3s; }
-footer .footer-links a:hover { color:var(--accent2); transform:scale(1.1); }
-footer span.brand { background: linear-gradient(90deg, var(--accent1), var(--accent2)); -webkit-background-clip:text; color:transparent; font-weight:600; }
+footer .footer-links { display:flex; gap:20px; flex-wrap:wrap; justify-content:center; margin-top:10px; }
+footer .footer-links a { color: var(--accent1); transition: all 0.3s; }
+footer .footer-links a:hover { color: var(--accent2); transform: scale(1.1); }
+footer span.brand { background: linear-gradient(90deg,var(--accent1),var(--accent2)); -webkit-background-clip:text; color:transparent; font-weight:600; }
 
 @media(max-width:900px){ nav{display:none;} .hamburger{display:flex;} }
 
@@ -117,21 +115,72 @@ footer span.brand { background: linear-gradient(90deg, var(--accent1), var(--acc
 </div>
 <div class="overlay" id="overlay"></div>
 
-<div class="c-head">
-  <h1>Commands</h1>
-  <p>Explore all the commands available in Lunov Bot</p>
+<h1>Commands</h1>
+<p class="subtitle">Browse all commands of Lunov Bot by category</p>
+
+<div class="command-category">
+  <div class="category-header">💬 General <span>&#9654;</span></div>
+  <div class="category-body">
+    <ul>
+      <li>hello — Greet the bot</li>
+      <li>ping — Check bot latency</li>
+      <li>info [bot/@user/#channel/website] — Shows info about the bot, a user, a channel, or the website</li>
+      <li>invite — Get an invite link for Lunov</li>
+      <li>website — Visit Lunov's website</li>
+      <li>echo &lt;message&gt; — Make the bot repeat your message</li>
+      <li>roll [sides] — Roll a dice</li>
+      <li>coinflip — Flip a coin</li>
+      <li>8ball &lt;question&gt; — Ask the magic 8-ball</li>
+      <li>poll "Question" option1 option2 ... — Quick voting system</li>
+    </ul>
+  </div>
 </div>
 
-<div class="commands-list" id="commandsList"></div>
+<div class="command-category">
+  <div class="category-header">🛠 Moderation (Server Owner Only) <span>&#9654;</span></div>
+  <div class="category-body">
+    <ul>
+      <li>kick @user [reason] — Kick a user</li>
+      <li>ban @user [reason] — Ban a user</li>
+      <li>unban username#1234 — Unban a user</li>
+      <li>clear [amount] — Delete recent messages</li>
+    </ul>
+  </div>
+</div>
 
-<div class="pagination">
-  <button id="prevPage" disabled>Previous</button>
-  <div class="page-numbers" id="pageNumbers"></div>
-  <button id="nextPage">Next</button>
+<div class="command-category">
+  <div class="category-header">🎲 Fun & Utility <span>&#9654;</span></div>
+  <div class="category-body">
+    <ul>
+      <li>userinfo &lt;@user&gt; — Shows information about a user</li>
+      <li>serverinfo — Shows information about this server</li>
+      <li>roll [sides] — Roll a dice</li>
+      <li>coinflip — Flip a coin</li>
+      <li>8ball &lt;question&gt; — Ask the magic 8-ball</li>
+      <li>poll "Question" option1 option2 ... — Quick voting system</li>
+    </ul>
+  </div>
+</div>
+
+<div class="command-category">
+  <div class="category-header">💰 Economy <span>&#9654;</span></div>
+  <div class="category-body">
+    <ul>
+      <li>balance / bal [@user] — Check your or another user's balance</li>
+      <li>work — Earn random coins</li>
+      <li>daily — Claim your daily reward</li>
+      <li>shop — View available items</li>
+      <li>buy &lt;item&gt; — Buy an item from the shop</li>
+      <li>inventory [@user] — View your or another user's items</li>
+      <li>gamble &lt;amount&gt; — Risk coins to try to win more</li>
+      <li>pay &lt;@user&gt; &lt;amount&gt; — Send coins to someone</li>
+      <li>leaderboard — Top richest users in the server</li>
+    </ul>
+  </div>
 </div>
 
 <footer>
-  <div>&copy; 2025 <span class="brand">Lunov Dashboard</span>. All rights reserved.</div>
+  <div>&copy; 2025 <span class="brand">Lunov Dashboard</span>. All Rights Reserved.</div>
   <div class="footer-links">
     <a href="https://lunovbot.github.io/">Home</a>
     <a href="https://lunovbot.github.io/commands">Commands</a>
@@ -145,61 +194,25 @@ footer span.brand { background: linear-gradient(90deg, var(--accent1), var(--acc
 const hamburger = document.getElementById('hamburger');
 const sidebar = document.getElementById('sidebar');
 const overlay = document.getElementById('overlay');
-
 hamburger.addEventListener('click', () => { sidebar.classList.toggle('active'); overlay.classList.toggle('active'); });
 overlay.addEventListener('click', () => { sidebar.classList.remove('active'); overlay.classList.remove('active'); });
 
-// Sample command data
-const commandData = [
-  {name:"hello", description:"Greets the user.", usage:"ln hello"},
-  {name:"ping", description:"Checks the bot latency.", usage:"ln ping"},
-  {name:"roll", description:"Rolls a dice.", usage:"ln roll"},
-  {name:"info", description:"Shows information about server, bot, or user.", usage:"ln info"},
-  {name:"invite", description:"Generates an invite link for the bot.", usage:"ln invite"},
-];
-
-let currentPage = 1;
-let itemsPerPage = 5;
-
-const commandsList = document.getElementById('commandsList');
-const prevPageBtn = document.getElementById('prevPage');
-const nextPageBtn = document.getElementById('nextPage');
-const pageNumbers = document.getElementById('pageNumbers');
-
-function renderCommands() {
-  commandsList.innerHTML = '';
-  const start = (currentPage-1)*itemsPerPage;
-  const end = Math.min(start+itemsPerPage, commandData.length);
-  for(let i=start;i<end;i++){
-    const cmd = commandData[i];
-    const div = document.createElement('div');
-    div.className='command-item';
-    div.innerHTML = `<h3>${cmd.name}</h3><p>${cmd.description}</p><p><strong>Usage:</strong> <code>${cmd.usage}</code></p>`;
-    commandsList.appendChild(div);
-  }
-  updatePagination();
-}
-
-function updatePagination(){
-  const totalPages = Math.ceil(commandData.length/itemsPerPage);
-  prevPageBtn.disabled = currentPage===1;
-  nextPageBtn.disabled = currentPage===totalPages;
-  pageNumbers.innerHTML='';
-  for(let i=1;i<=totalPages;i++){
-    const span = document.createElement('span');
-    span.className='page-number'+(i===currentPage?' active':'');
-    span.textContent=i;
-    span.addEventListener('click',()=>{currentPage=i; renderCommands();});
-    pageNumbers.appendChild(span);
-  }
-}
-
-prevPageBtn.addEventListener('click',()=>{ if(currentPage>1){ currentPage--; renderCommands(); } });
-nextPageBtn.addEventListener('click',()=>{ const totalPages=Math.ceil(commandData.length/itemsPerPage); if(currentPage<totalPages){ currentPage++; renderCommands(); } });
-
-document.addEventListener('DOMContentLoaded', renderCommands);
+// Collapsible categories
+const headers = document.querySelectorAll('.category-header');
+headers.forEach(header => {
+  header.addEventListener('click', () => {
+    const body = header.nextElementSibling;
+    const isActive = header.classList.contains('active');
+    if(isActive) {
+      header.classList.remove('active');
+      body.style.display = 'none';
+    } else {
+      header.classList.add('active');
+      body.style.display = 'block';
+    }
+  });
+});
 </script>
 
 </body>
 </html>
-
