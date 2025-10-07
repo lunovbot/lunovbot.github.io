@@ -75,11 +75,29 @@
     <a href="https://lunovbot.github.io/">Home</a>
     <a href="commands">Commands</a>
     <a href="changelogs">Changelogs</a>
-    <a href="tos.html">Terms</a>
-    <a href="privacy.html">Privacy</a>
+    <a href="terms-of-services.html">Terms</a>
+    <a href="privacy-policy.html">Privacy</a>
   </div>
 </footer>
 
-<script src="script.js"></script>
+<script src="script.js">
+  document.addEventListener('DOMContentLoaded', () => {
+  const hamburger = document.getElementById('hamburger');
+  const sidebar = document.getElementById('sidebar');
+  const overlay = document.getElementById('overlay');
+
+  if (hamburger && sidebar && overlay) {
+    hamburger.addEventListener('click', () => {
+      sidebar.classList.toggle('active');
+      overlay.classList.toggle('active');
+    });
+    overlay.addEventListener('click', () => {
+      sidebar.classList.remove('active');
+      overlay.classList.remove('active');
+    });
+  }
+});
+
+</script>
 </body>
 </html>
