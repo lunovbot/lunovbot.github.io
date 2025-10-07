@@ -34,8 +34,11 @@ header {
   padding: 20px;
   background-color: #2f3136;
   border-radius: 40px;
+  opacity: 0;
+  transform: translateY(-20px);
+  animation: fadeDown 1s forwards 0.2s;
 }
-.logo { display: flex; align-items: center; gap: 10px; magin-right: 50px}
+.logo { display: flex; align-items: center; gap: 10px; }
 .logo-icon { border-radius: 50%; height: 38px; width: 38px; }
 nav a { 
   color: #b9bbbe;
@@ -75,10 +78,13 @@ nav a.active::after {
   align-items: center;
   text-align: center;
   padding: 40px 20px;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeUp 1s forwards 0.4s;
 }
 .hero-layout { display: flex; flex-direction: column; align-items: center; gap: 50px; }
 .hero h1 { font-size: 3rem; font-weight: 800; color: var(--accent1); text-shadow: 0 0 5px rgba(79,209,197,0.2);}
-.hero h1 span { color: var(--secondary-text); padding-right: 140px; }
+.hero h1 span { color: var(--secondary-text); }
 .hero p { font-size: 1.1rem; color: var(--secondary-text); margin-top: 15px; line-height: 1.7; }
 .buttons { margin-top: 25px; display: flex; flex-wrap: wrap; gap: 10px; justify-content: left; }
 .btn {
@@ -89,7 +95,14 @@ nav a.active::after {
   background: transparent;
   font-weight: 400;
   transition: 0.25s;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeUp 0.6s forwards;
 }
+.btn:nth-child(1) { animation-delay: 0.6s; }
+.btn:nth-child(2) { animation-delay: 0.8s; }
+.btn:nth-child(3) { animation-delay: 1s; }
+.btn:nth-child(4) { animation-delay: 1.2s; }
 .btn:hover { background: var(--accent1); color: #fff; box-shadow: 0 0 8px var(--accent1); }
 
 /* Card */
@@ -100,6 +113,9 @@ nav a.active::after {
   padding: 25px;
   max-width: 350px;
   box-shadow: 0 4px 10px rgba(79,209,197,0.1);
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeUp 0.8s forwards 1.4s;
 }
 .card h2 { color: var(--accent1); font-size: 1.3rem; margin-bottom: 10px; }
 .card p { color: var(--secondary-text); margin: 5px 0; font-size: 0.95rem; }
@@ -113,6 +129,9 @@ nav a.active::after {
   width: 100%;
   overflow: hidden;
   margin: 40px 0;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeUp 1s forwards 1.6s;
 }
 .features-slider {
   display: flex;
@@ -148,3 +167,13 @@ nav a.active::after {
 
 /* Footer */
 footer { display: flex; justify-content: center; align-items: center; padding: 20px; color: var(--neutral); margin-top: 40px; }
+
+/* Animations */
+@keyframes fadeUp {
+  0% { opacity: 0; transform: translateY(20px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeDown {
+  0% { opacity: 0; transform: translateY(-20px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
