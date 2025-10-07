@@ -71,7 +71,7 @@ nav a.active::after {
 }
 .account-btn:hover { background-color: #fff; color: var(--accent1); transform: scale(1.05); }
 
-/* Hero */
+/* Hero Section */
 .hero {
   display: flex;
   flex-direction: column;
@@ -105,7 +105,7 @@ nav a.active::after {
 .btn:nth-child(4) { animation-delay: 1.2s; }
 .btn:hover { background: var(--accent1); color: #fff; box-shadow: 0 0 8px var(--accent1); }
 
-/* Card */
+/* Hero Help Panel */
 .card {
   background: var(--card-bg);
   border: 1px solid var(--card-border);
@@ -113,15 +113,19 @@ nav a.active::after {
   padding: 25px;
   max-width: 350px;
   box-shadow: 0 4px 10px rgba(79,209,197,0.1);
-  opacity: 0;
-  transform: translateY(20px);
-  animation: fadeUp 0.8s forwards 1.4s;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  perspective: 1000px;
+  animation: float 3s ease-in-out infinite;
 }
-.card h2 { color: var(--accent1); font-size: 1.3rem; margin-bottom: 10px; }
-.card p { color: var(--secondary-text); margin: 5px 0; font-size: 0.95rem; }
-.card a { color: var(--accent1); }
-.card a:hover { text-decoration: underline; }
-.dev { color: #00e5ff; }
+.card:hover { box-shadow: 0 20px 50px rgba(79,209,197,0.6); }
+.card-content { transform-style: preserve-3d; transition: transform 0.2s ease; }
+.card p strong, .card p span {
+  transition: 0.3s;
+}
+.card p strong:hover, .card p span:hover {
+  color: var(--accent1);
+  text-shadow: 0 0 10px var(--accent1);
+}
 
 /* Features Section */
 .features-container {
@@ -160,11 +164,6 @@ nav a.active::after {
 .feature-emoji { font-size: 2rem; margin-bottom: 15px; }
 .features-title { text-align: center; font-size: 2rem; margin-bottom: 20px; color: var(--accent1); }
 
-/* Hero responsive */
-@media (min-width: 900px) {
-  .hero-layout { flex-direction: row; justify-content: space-between; text-align: left; width: 80%; }
-}
-
 /* Developer Section */
 .developer {
   margin: 60px 0;
@@ -191,11 +190,13 @@ nav a.active::after {
   padding: 30px;
   max-width: 250px;
   text-align: center;
-  transition: transform 0.5s ease, box-shadow 0.3s ease;
+  transition: transform 0.4s ease, box-shadow 0.3s ease, filter 0.3s ease;
+  filter: brightness(1);
 }
 .developer-card:hover {
-  transform: translateY(-10px) scale(1.05);
-  box-shadow: 0 10px 30px rgba(79,209,197,0.3);
+  transform: translateY(-15px) scale(1.08) rotateY(5deg);
+  box-shadow: 0 15px 40px rgba(79,209,197,0.5);
+  filter: brightness(1.2);
 }
 .developer-img {
   border-radius: 50%;
@@ -205,42 +206,17 @@ nav a.active::after {
   transition: transform 0.5s ease;
 }
 .developer-card:hover .developer-img {
-  transform: rotate(10deg) scale(1.1);
+  transform: rotate(15deg) scale(1.2);
 }
-.developer-card h3 { color: var(--accent1); margin-bottom: 5px; }
-.developer-card p { color: var(--secondary-text); margin-bottom: 10px; font-size: 0.95rem; }
 .social-links a {
   margin: 0 5px;
   color: var(--accent1);
   font-weight: 500;
   transition: color 0.3s, transform 0.3s;
 }
-.social-links a:hover { color: #fff; transform: scale(1.1); }
+.social-links a:hover { transform: scale(1.2) rotate(-5deg); }
 
-/* Hero Help Panel Interactive Effects */
-.card {
-  background: var(--card-bg);
-  border: 1px solid var(--card-border);
-  border-radius: 20px;
-  padding: 25px;
-  max-width: 350px;
-  box-shadow: 0 4px 10px rgba(79,209,197,0.1);
-  transition: transform 0.6s ease, box-shadow 0.5s ease;
-  animation: float 3s ease-in-out infinite;
-}
-.card:hover {
-  transform: rotateY(-15deg) rotateX(5deg) scale(1.08);
-  box-shadow: 0 15px 40px rgba(79,209,197,0.6);
-}
-.card p strong, .card p span {
-  transition: 0.3s;
-}
-.card p strong:hover, .card p span:hover {
-  color: var(--accent1);
-  text-shadow: 0 0 10px var(--accent1);
-}
-
-/* Floating animation for hero panel */
+/* Floating animations */
 @keyframes float {
   0%, 100% { transform: translateY(0); }
   50% { transform: translateY(-8px); }
@@ -249,7 +225,7 @@ nav a.active::after {
 /* Footer */
 footer { display: flex; justify-content: center; align-items: center; padding: 20px; color: var(--neutral); margin-top: 40px; }
 
-/* Animations */
+/* Load Animations */
 @keyframes fadeUp {
   0% { opacity: 0; transform: translateY(20px); }
   100% { opacity: 1; transform: translateY(0); }
@@ -257,4 +233,9 @@ footer { display: flex; justify-content: center; align-items: center; padding: 2
 @keyframes fadeDown {
   0% { opacity: 0; transform: translateY(-20px); }
   100% { opacity: 1; transform: translateY(0); }
+}
+
+/* Hero responsive */
+@media (min-width: 900px) {
+  .hero-layout { flex-direction: row; justify-content: space-between; text-align: left; width: 80%; }
 }
