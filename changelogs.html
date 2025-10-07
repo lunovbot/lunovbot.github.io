@@ -1,441 +1,187 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lunov Dashboard - Changelogs</title>
-      <link rel="icon" href="assets/cropped_circle_image.png" type="image/png">
-     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-        
-        body {
-            background-color: #36393f;
-            color: #dcddde;
-            line-height: 1.6;
-        }
-        
-        .c-head {
-            text-align: center;
-            margin-bottom: 30px;
-        }
-        
-        h1 {
-            font-size: 2.5rem;
-            color: #ffffff;
-            margin-bottom: 10px;
-        }
-        
-        .subtitle {
-            font-size: 1.2rem;
-            color: #b9bbbe;
-        }
-        
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lunov Dashboard — Changelogs</title>
+<link rel="icon" href="assets/cropped_circle_image.png" type="image/png">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --accent1: #4fd1c5;
+  --accent2: #2e8bff;
+  --secondary-text: #b9bbbe;
+  --card-bg: #2f3136;
+  --card-border: #202225;
+  --neutral: #72767d;
+  --hero-bg: linear-gradient(135deg, #2c2f33 0%, #36393f 100%);
+}
+
+* { margin:0; padding:0; box-sizing:border-box; font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+body { background: var(--hero-bg); color:#dcddde; line-height:1.6; overflow-x:hidden; scroll-behavior:smooth; }
+
+/* Header */
 header {
-    display: flex;
-    align-items: center;
-    width: max-content;       /* shrink to fit content */
-    margin: 20px auto 30px;   /* top margin 20px for floating effect, bottom 30px, centered horizontally */
-    padding: 20px;            /* padding around content */
-    background-color: #2f3136;
-    border-radius: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 90%;
+  max-width: 1200px;
+  margin: 20px auto 30px;
+  padding: 15px 30px;
+  background-color: rgba(47,49,54,0.9);
+  border-radius: 40px;
+  backdrop-filter: blur(8px);
+  box-shadow: 0 4px 15px rgba(0,0,0,0.3);
 }
+.logo { display:flex; align-items:center; gap:10px; }
+.logo-icon { border-radius:50%; height:38px; width:38px; transform:rotate(-10deg); transition: transform 0.5s; }
+.logo:hover .logo-icon { transform:rotate(10deg) scale(1.1); }
+nav a { color:#b9bbbe; padding:8px 12px; margin:0 6px; border-radius:6px; position:relative; transition: all 0.3s ease; font-weight:500; }
+nav a:hover, nav a.active { background-color: var(--accent1); color:#fff; }
+nav a.active::after { content:""; position:absolute; bottom:-4px; left:0; width:100%; height:3px; background-color: var(--accent2); border-radius:2px; }
+.account-btn { padding:6px 18px; border-radius:12px; border:1px solid var(--accent1); background-color: var(--accent1); color:#fff; font-weight:500; margin-left:10px; transition: all 0.3s ease; box-shadow:0 0 8px var(--accent1);}
+.account-btn:hover { background-color:#fff; color: var(--accent1); transform: scale(1.1); }
 
-.logo {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
+/* Page Header */
+.c-head { text-align:center; margin-bottom:50px; }
+.c-head h1 { font-size:3rem; background: linear-gradient(90deg, var(--accent1), var(--accent2)); -webkit-background-clip:text; color:transparent; margin-bottom:10px;}
+.c-head p { color: var(--secondary-text); font-size:1.2rem; }
 
-.logo-icon {
-    border-radius: 50%;
-    display: flex;
-    height: 38px;
-    width: 38px;
+/* Changelog Cards */
+.changelog-list { display:flex; flex-wrap:wrap; gap:30px; justify-content:center; }
+.changelog-item {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 25px;
+  padding:25px;
+  width:300px;
+  transition: transform 0.5s ease, box-shadow 0.5s ease;
 }
+.changelog-item:hover { transform: translateY(-10px) scale(1.05); box-shadow:0 25px 60px rgba(79,209,197,0.4); }
+.changelog-item h3 { color: var(--accent1); margin-bottom:8px; transition: color 0.3s; }
+.changelog-item:hover h3 { color: var(--accent2); }
+.changelog-item p { color: var(--secondary-text); margin-bottom:12px; }
+.changelog-item ul { padding-left:20px; list-style:disc; color: var(--secondary-text); }
 
-nav a {
-    color: #b9bbbe;
-    text-decoration: none;
-    padding: 8px 12px; /* smaller padding */
-    margin: 0 4px;      /* closer spacing */
-    border-radius: 6px;
-    transition: all 0.3s ease;
-    position: relative; /* for active indicator */
-}
-        
-nav a:hover, nav a.active {
-    background-color: #4f545c;
-    color: #ffffff;
-}
+/* Pagination */
+.pagination { display:flex; justify-content:center; align-items:center; gap:10px; margin:40px 0; flex-wrap:wrap; }
+.pagination button { background-color: var(--accent1); color:#fff; border:none; border-radius:6px; padding:8px 16px; cursor:pointer; transition:all 0.3s; }
+.pagination button:hover { background-color: var(--accent2); }
+.pagination button:disabled { background-color: var(--neutral); cursor:not-allowed; }
+.page-numbers { display:flex; gap:5px; }
+.page-number { padding:8px 12px; border-radius:6px; cursor:pointer; transition:all 0.3s; }
+.page-number:hover { background-color: #4f545c; }
+.page-number.active { background-color: var(--accent2); color:#fff; }
 
-nav a:active {
-    transform: scale(0.95);
-    transition: transform 0.15s;
+/* Footer */
+footer {
+  background-color: rgba(47,49,54,0.95);
+  backdrop-filter: blur(8px);
+  padding:25px 20px;
+  text-align:center;
+  box-shadow:0 -4px 20px rgba(0,0,0,0.2);
+  color: var(--neutral);
 }
-
-/* Active indicator sliding animation */
-nav a.active::after {
-    content: "";
-    position: absolute;
-    bottom: -4px;
-    left: 0;
-    width: 100%;
-    height: 3px;
-    background-color: var(--accent1);
-    border-radius: 2px;
-    transition: all 0.3s ease;
-}
-
-/* Account button style */
-.account-btn {
-    padding: 6px 18px;
-    border-radius: 8px;
-    border: 1px solid var(--accent1);
-    background-color: var(--accent1);
-    color: #fff;
-    font-weight: 500;
-    margin-left: 10px;
-    transition: all 0.3s ease;
-}
-
-.account-btn:hover {
-    background-color: #fff;
-    color: var(--accent1);
-    box-shadow: 0 0 10px var(--accent1);
-    transform: scale(1.05);
-}
-
-        
-        .pagination-info {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 20px;
-            padding: 10px 0;
-            border-bottom: 1px solid #4f545c;
-        }
-        
-        .range-selector {
-            display: flex;
-            align-items: center;
-        }
-        
-        .range-selector select {
-            background-color: #2f3136;
-            color: #dcddde;
-            border: 1px solid #4f545c;
-            border-radius: 4px;
-            padding: 5px 10px;
-            margin-left: 10px;
-        }
-        
-        .changelog-list {
-            background-color: #2f3136;
-            border-radius: 8px;
-            padding: 20px;
-            margin-bottom: 30px;
-        }
-        
-        .changelog-item {
-            padding: 15px;
-            margin-bottom: 15px;
-            background-color: #36393f;
-            border-radius: 6px;
-            border-left: 4px solid #7289da;
-        }
-        
-        .changelog-item h3 {
-            color: #ffffff;
-            margin-bottom: 10px;
-        }
-        
-        .changelog-item ul {
-            padding-left: 20px;
-        }
-        
-        .changelog-item li {
-            margin-bottom: 5px;
-        }
-        
-        .pagination {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin-top: 20px;
-        }
-        
-        .pagination button {
-            background-color: #7289da;
-            color: white;
-            border: none;
-            border-radius: 4px;
-            padding: 8px 16px;
-            margin: 0 5px;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-        
-        .pagination button:hover {
-            background-color: #5b73c4;
-        }
-        
-        .pagination button:disabled {
-            background-color: #4f545c;
-            cursor: not-allowed;
-        }
-        
-        .page-numbers {
-            display: flex;
-            margin: 0 10px;
-        }
-        
-        .page-number {
-            padding: 8px 12px;
-            margin: 0 2px;
-            border-radius: 4px;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-        
-        .page-number:hover {
-            background-color: #4f545c;
-        }
-        
-        .page-number.active {
-            background-color: #7289da;
-        }
-        
-        footer {
-            text-align: center;
-            margin-top: 40px;
-            padding-top: 20px;
-            border-top: 1px solid #4f545c;
-            color: #72767d;
-        }
-    </style>
+footer .footer-links { display:flex; gap:20px; justify-content:center; flex-wrap:wrap; margin-top:10px;}
+footer .footer-links a { color: var(--accent1); transition: transform 0.3s; }
+footer .footer-links a:hover { color: var(--accent2); transform: scale(1.1);}
+footer span.brand { background: linear-gradient(90deg, var(--accent1), var(--accent2)); -webkit-background-clip:text; color:transparent; font-weight:600;}
+</style>
 </head>
-<body>       
-        <header>
+<body>
+
+<header>
   <div class="logo">
     <img class="logo-icon" src="assets/cropped_circle_image.png" alt="Lunov Logo">
     <div class="logo-text">Lunov</div>
   </div>
   <nav>
-    <a href="#" class="active">Home</a>
-    <a href="#">Commands</a>
-    <a href="#">Servers</a>
-    <a href="#">Changelogs</a>
-    <a href="#">Support</a>
+    <a href="https://lunovbot.github.io/" >Home</a>
+    <a href="https://lunovbot.github.io/commands">Commands</a>
+    <a href="https://lunovbot.github.io/servers">Servers</a>
+    <a href="#" class="active">Changelogs</a>
+    <a href="https://discord.gg/bQaDPh3fbF">Support</a>
     <a href="#" class="account-btn">Account</a>
   </nav>
 </header>
 
-        <div class="c-head">
-            <h1>Changelogs!</h1>
-            <p class="subtitle">Find all Lunov bot commands and information you need</p>
-        </div>
-        
-        <div class="pagination-info">
-            <div class="range-selector">
-                <span>Range per page:</span>
-                <select id="itemsPerPage">
-                    <option value="10">10</option>
-                    <option value="20">20</option>
-                    <option value="50">50</option>
-                </select>
-            </div>
-            <div id="pageInfo">1–10 of 161</div>
-        </div>
-        
-        <div class="changelog-list" id="changelogList">
-            <!-- Changelog items will be dynamically generated here -->
-        </div>
-        
-        <div class="pagination">
-            <button id="prevPage" disabled>Previous</button>
-            <div class="page-numbers" id="pageNumbers">
-                <!-- Page numbers will be dynamically generated here -->
-            </div>
-            <button id="nextPage">Next</button>
-        </div>
-        
-        <footer>
-            <p>Lunov Bot &copy; 2025. All rights reserved.</p>
-        </footer>
+<div class="c-head">
+  <h1>Changelogs</h1>
+  <p>All the latest updates and fixes for Lunov Bot</p>
+</div>
 
-    <script>
-        // Sample changelog data
-        const changelogData = [
-            {
-                id: 1,
-                title: "Changelog 1",
-                date: "October 5, 2025",
-                changes: [
-                    "Added hello and ping command"
-                ]
-            },
-            {
-                id: 2,
-                title: "Changelog 2",
-                date: "October 1, 2025",
-                changes: [
-                    "Added roll command that rolls a dice and info command which shows the bot information"
-                ]
-            },
-            {
-                id: 3,
-                title: "Changelog 3",
-                date: "September 25, 2025",
-                changes: [
-                    "Added welcome message and fixed some issues",
-                ]
-            }
-        ];
+<div class="changelog-list" id="changelogList">
+  <!-- Changelog items dynamically generated here -->
+</div>
 
-        // Pagination variables
-        let currentPage = 1;
-        let itemsPerPage = 10;
-        const totalItems = 5; // Total number of changelog entries
+<div class="pagination">
+  <button id="prevPage" disabled>Previous</button>
+  <div class="page-numbers" id="pageNumbers"></div>
+  <button id="nextPage">Next</button>
+</div>
 
-        // DOM elements
-        const changelogList = document.getElementById('changelogList');
-        const pageInfo = document.getElementById('pageInfo');
-        const prevPageBtn = document.getElementById('prevPage');
-        const nextPageBtn = document.getElementById('nextPage');
-        const pageNumbers = document.getElementById('pageNumbers');
-        const itemsPerPageSelect = document.getElementById('itemsPerPage');
+<footer>
+  <div>&copy; 2025 <span class="brand">Lunov Dashboard</span>. All rights reserved.</div>
+  <div class="footer-links">
+    <a href="https://lunovbot.github.io/">Home</a>
+    <a href="https://lunovbot.github.io/commands">Commands</a>
+    <a href="https://lunovbot.github.io/changelogs">Changelogs</a>
+    <a href="https://discord.gg/bQaDPh3fbF">Support</a>
+  </div>
+</footer>
 
-        // Initialize the page
-        function init() {
-            renderChangelogs();
-            updatePagination();
-            setupEventListeners();
-        }
+<script>
+// Sample changelog data
+const changelogData = [
+  {id:1, title:"Changelog 1", date:"October 5, 2025", changes:["Added hello and ping command"]},
+  {id:2, title:"Changelog 2", date:"October 1, 2025", changes:["Added roll and info command"]},
+  {id:3, title:"Changelog 3", date:"September 25, 2025", changes:["Added welcome message and fixed some issues"]},
+  {id:4, title:"Changelog 4", date:"September 20, 2025", changes:["Improved bot stability"]},
+  {id:5, title:"Changelog 5", date:"September 15, 2025", changes:["Minor UI updates"]},
+];
 
-        // Render changelogs for the current page
-        function renderChangelogs() {
-            changelogList.innerHTML = '';
-            
-            // Calculate start and end indices for current page
-            const startIndex = (currentPage - 1) * itemsPerPage;
-            const endIndex = Math.min(startIndex + itemsPerPage, changelogData.length);
-            
-            // Create changelog items
-            for (let i = startIndex; i < endIndex; i++) {
-                const changelog = changelogData[i];
-                if (!changelog) break;
-                
-                const changelogItem = document.createElement('div');
-                changelogItem.className = 'changelog-item';
-                
-                const changesList = changelog.changes.map(change => `<li>${change}</li>`).join('');
-                
-                changelogItem.innerHTML = `
-                    <h3>${changelog.title}</h3>
-                    <p><strong>Date:</strong> ${changelog.date}</p>
-                    <ul>
-                        ${changesList}
-                    </ul>
-                `;
-                
-                changelogList.appendChild(changelogItem);
-            }
-            
-            // Update page info
-            const startItem = (currentPage - 1) * itemsPerPage + 1;
-            const endItem = Math.min(currentPage * itemsPerPage, totalItems);
-            pageInfo.textContent = `${startItem}–${endItem} of ${totalItems}`;
-        }
+let currentPage = 1;
+let itemsPerPage = 5;
 
-        // Update pagination controls
-        function updatePagination() {
-            const totalPages = Math.ceil(totalItems / itemsPerPage);
-            
-            // Update previous/next buttons
-            prevPageBtn.disabled = currentPage === 1;
-            nextPageBtn.disabled = currentPage === totalPages;
-            
-            // Update page numbers
-            pageNumbers.innerHTML = '';
-            
-            // Always show first page
-            addPageNumber(1);
-            
-            // Show ellipsis if needed
-            if (currentPage > 3) {
-                const ellipsis = document.createElement('span');
-                ellipsis.textContent = '...';
-                ellipsis.className = 'page-number';
-                pageNumbers.appendChild(ellipsis);
-            }
-            
-            // Show current page and neighbors
-            for (let i = Math.max(2, currentPage - 1); i <= Math.min(totalPages - 1, currentPage + 1); i++) {
-                addPageNumber(i);
-            }
-            
-            // Show ellipsis if needed
-            if (currentPage < totalPages - 2) {
-                const ellipsis = document.createElement('span');
-                ellipsis.textContent = '...';
-                ellipsis.className = 'page-number';
-                pageNumbers.appendChild(ellipsis);
-            }
-            
-            // Always show last page if there's more than one page
-            if (totalPages > 1) {
-                addPageNumber(totalPages);
-            }
-        }
+const changelogList = document.getElementById('changelogList');
+const prevPageBtn = document.getElementById('prevPage');
+const nextPageBtn = document.getElementById('nextPage');
+const pageNumbers = document.getElementById('pageNumbers');
 
-        // Add a page number to the pagination
-        function addPageNumber(page) {
-            const pageNumber = document.createElement('span');
-            pageNumber.textContent = page;
-            pageNumber.className = 'page-number' + (page === currentPage ? ' active' : '');
-            pageNumber.addEventListener('click', () => {
-                currentPage = page;
-                renderChangelogs();
-                updatePagination();
-            });
-            pageNumbers.appendChild(pageNumber);
-        }
+function renderChangelogs() {
+  changelogList.innerHTML = '';
+  const start = (currentPage-1)*itemsPerPage;
+  const end = Math.min(start+itemsPerPage, changelogData.length);
+  for(let i=start;i<end;i++){
+    const item = changelogData[i];
+    const changes = item.changes.map(c=>`<li>${c}</li>`).join('');
+    const div = document.createElement('div');
+    div.className='changelog-item';
+    div.innerHTML = `<h3>${item.title}</h3><p><strong>Date:</strong> ${item.date}</p><ul>${changes}</ul>`;
+    changelogList.appendChild(div);
+  }
+  updatePagination();
+}
 
-        // Set up event listeners
-        function setupEventListeners() {
-            prevPageBtn.addEventListener('click', () => {
-                if (currentPage > 1) {
-                    currentPage--;
-                    renderChangelogs();
-                    updatePagination();
-                }
-            });
-            
-            nextPageBtn.addEventListener('click', () => {
-                const totalPages = Math.ceil(totalItems / itemsPerPage);
-                if (currentPage < totalPages) {
-                    currentPage++;
-                    renderChangelogs();
-                    updatePagination();
-                }
-            });
-            
-            itemsPerPageSelect.addEventListener('change', () => {
-                itemsPerPage = parseInt(itemsPerPageSelect.value);
-                currentPage = 1;
-                renderChangelogs();
-                updatePagination();
-            });
-        }
+function updatePagination(){
+  const totalPages = Math.ceil(changelogData.length/itemsPerPage);
+  prevPageBtn.disabled = currentPage===1;
+  nextPageBtn.disabled = currentPage===totalPages;
+  pageNumbers.innerHTML='';
+  for(let i=1;i<=totalPages;i++){
+    const span = document.createElement('span');
+    span.className='page-number'+(i===currentPage?' active':'');
+    span.textContent=i;
+    span.addEventListener('click',()=>{currentPage=i; renderChangelogs();});
+    pageNumbers.appendChild(span);
+  }
+}
 
-        // Initialize the page when loaded
-        document.addEventListener('DOMContentLoaded', init);
-    </script>
+prevPageBtn.addEventListener('click',()=>{if(currentPage>1){currentPage--;renderChangelogs();}});
+nextPageBtn.addEventListener('click',()=>{const totalPages=Math.ceil(changelogData.length/itemsPerPage); if(currentPage<totalPages){currentPage++;renderChangelogs();}});
+document.addEventListener('DOMContentLoaded',renderChangelogs);
+</script>
+
 </body>
 </html>
