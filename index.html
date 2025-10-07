@@ -5,7 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Lunov Dashboard — Home</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
-<link rel="icon" href="assets/cropped_circle_image.png" type="image/png">
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -33,10 +32,10 @@
       <h1>Welcome to <span>Lunov</span> Dashboard</h1>
       <p>Step into Lunov — a dynamic multipurpose bot with 80+ smart commands built to enhance your Discord experience. Automate tasks, manage servers, and keep your community engaged effortlessly.</p>
       <div class="buttons">
-        <a href="https://discord.com/oauth2/authorize?client_id=1424366813789028412&permissions=268634146&integration_type=0&scope=bot+applications.commands" target="_blank" class="btn">Invite Me!</a>
-        <a href="https://discord.gg/94yRBfUF" target="_blank" class="btn">Support Server</a>
+        <a href="#" class="btn">Invite Me!</a>
+        <a href="#" class="btn">Support Server</a>
         <a href="#" class="btn">Docs</a>
-        <a href="https://lunovbot.github.io/changelogs" class="btn">Changelogs</a>
+        <a href="#" class="btn">Changelogs</a>
       </div>
     </div>
     <div class="card" id="help-panel">
@@ -47,7 +46,7 @@
         <p><strong>Servers:</strong> 1</p>
         <p><strong>Ping:</strong> 65ms</p>
         <p><strong>Developer:</strong> <span class="dev">@parrot_games1</span></p>
-        <p><a href="https://discord.com/oauth2/authorize?client_id=1424366813789028412&permissions=268634146&integration_type=0&scope=bot+applications.commands">Invite Lunov</a></p>
+        <p><a href="#">Invite Lunov</a></p>
       </div>
     </div>
   </div>
@@ -58,42 +57,10 @@
   <h2 class="features-title">Features</h2>
   <div class="features-container">
     <div class="features-slider">
-      <div class="feature-card">
-        <div class="feature-emoji">🛡️</div>
-        <h3>Automated Moderation</h3>
-        <p>Keep your server clean with advanced auto-moderation tools.</p>
-      </div>
-      <div class="feature-card">
-        <div class="feature-emoji">⚡</div>
-        <h3>Custom Commands</h3>
-        <p>Create personalized commands to make your server unique.</p>
-      </div>
-      <div class="feature-card">
-        <div class="feature-emoji">🎵</div>
-        <h3>Music Playback</h3>
-        <p>Stream music directly into your server with high quality.</p>
-      </div>
-      <div class="feature-card">
-        <div class="feature-emoji">📊</div>
-        <h3>Server Analytics</h3>
-        <p>Get insights and statistics about your server activity.</p>
-      </div>
-      <div class="feature-card">
-        <div class="feature-emoji">🎮</div>
-        <h3>Engagement Tools</h3>
-        <p>Interactive polls, games, and leveling systems for your community.</p>
-      </div>
-      <!-- Duplicates for smooth loop -->
-      <div class="feature-card">
-        <div class="feature-emoji">🛡️</div>
-        <h3>Automated Moderation</h3>
-        <p>Keep your server clean with advanced auto-moderation tools.</p>
-      </div>
-      <div class="feature-card">
-        <div class="feature-emoji">⚡</div>
-        <h3>Custom Commands</h3>
-        <p>Create personalized commands to make your server unique.</p>
-      </div>
+      <div class="feature-card"><div class="feature-emoji">🛡️</div><h3>Automated Moderation</h3><p>Keep your server clean.</p></div>
+      <div class="feature-card"><div class="feature-emoji">⚡</div><h3>Custom Commands</h3><p>Create personalized commands.</p></div>
+      <div class="feature-card"><div class="feature-emoji">🎵</div><h3>Music Playback</h3><p>Stream music directly.</p></div>
+      <div class="feature-card"><div class="feature-emoji">📊</div><h3>Server Analytics</h3><p>Get server statistics.</p></div>
     </div>
   </div>
 </section>
@@ -107,45 +74,37 @@
       <h3>@parrot_games1</h3>
       <p>Lead Developer & Bot Creator</p>
       <div class="social-links">
-        <a href="https://github.com/parrot_games1" target="_blank">GitHub</a>
-        <a href="https://twitter.com/parrot_games1" target="_blank">Twitter</a>
-        <a href="https://discord.gg/94yRBfUF" target="_blank">Discord</a>
+        <a href="#">GitHub</a>
+        <a href="#">Twitter</a>
+        <a href="#">Discord</a>
       </div>
     </div>
   </div>
 </section>
 
 <!-- Footer -->
-<footer>
-  &copy; 2025 Lunov Dashboard. All Rights Reserved.
-</footer>
+<footer>&copy; 2025 Lunov Dashboard. All Rights Reserved.</footer>
 
-<!-- JS for interactions -->
 <script>
 const panel = document.getElementById('help-panel');
 panel.addEventListener('mousemove', (e) => {
   const rect = panel.getBoundingClientRect();
   const x = e.clientX - rect.left;
   const y = e.clientY - rect.top;
-  const cx = rect.width / 2;
-  const cy = rect.height / 2;
-  const dx = (x - cx) / cx;
-  const dy = (y - cy) / cy;
+  const dx = (x - rect.width/2)/(rect.width/2);
+  const dy = (y - rect.height/2)/(rect.height/2);
   panel.querySelector('.card-content').style.transform = `rotateY(${dx*15}deg) rotateX(${-dy*15}deg)`;
 });
-panel.addEventListener('mouseleave', () => {
-  panel.querySelector('.card-content').style.transform = `rotateY(0deg) rotateX(0deg)`;
-});
+panel.addEventListener('mouseleave', () => { panel.querySelector('.card-content').style.transform = `rotateY(0deg) rotateX(0deg)`; });
 
-// Developer Card Floating
-const devCards = document.querySelectorAll('.developer-card');
-devCards.forEach(card => {
-  let pos = 0;
-  setInterval(() => {
-    pos = pos === 0 ? -5 : 0;
-    card.style.transform = `translateY(${pos}px) scale(1.05)`;
-  }, 2000);
-});
+// Features hover scroll
+const slider = document.querySelector('.features-slider');
+let speed = 1;
+slider.addEventListener('mouseenter', ()=>speed=3);
+slider.addEventListener('mouseleave', ()=>speed=1);
+let pos = 0;
+function animateSlider(){ pos -= speed; if(pos <= -slider.scrollWidth/2) pos=0; slider.style.transform=`translateX(${pos}px)`; requestAnimationFrame(animateSlider);}
+animateSlider();
 </script>
 
 </body>
