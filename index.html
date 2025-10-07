@@ -4,7 +4,6 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Lunov Dashboard — Home</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -23,7 +22,20 @@
     <a href="https://discord.gg/bQaDPh3fbF">Support</a>
     <a href="#" class="account-btn">Account</a>
   </nav>
+  <div class="hamburger" id="hamburger">
+    <div></div><div></div><div></div>
+  </div>
 </header>
+
+<!-- Sidebar -->
+<div class="sidebar" id="sidebar">
+  <a href="https://lunovbot.github.io/">Home</a>
+  <a href="https://lunovbot.github.io/commands">Commands</a>
+  <a href="https://lunovbot.github.io/servers">Servers</a>
+  <a href="https://lunovbot.github.io/changelogs">Changelogs</a>
+  <a href="https://discord.gg/bQaDPh3fbF">Support</a>
+</div>
+<div class="overlay" id="overlay"></div>
 
 <!-- Hero Section -->
 <section class="hero">
@@ -52,39 +64,18 @@
   </div>
 </section>
 
+<!-- Features Section -->
 <section class="features">
-  <h2 class="features-title">Features</h2>
   <div class="features-container">
     <div class="features-slider">
-      <div class="feature-card">
-        <div class="feature-emoji">🛡️</div>
-        <h3>Automated Moderation</h3>
-        <p>Keep your server clean with advanced auto-moderation tools.</p>
-      </div>
-      <div class="feature-card">
-        <div class="feature-emoji">⚡</div>
-        <h3>Custom Commands</h3>
-        <p>Create personalized commands to make your server unique.</p>
-      </div>
-      <div class="feature-card">
-        <div class="feature-emoji">🎵</div>
-        <h3>Music Playback</h3>
-        <p>Stream high-quality music directly in your server.</p>
-      </div>
-      <div class="feature-card">
-        <div class="feature-emoji">📊</div>
-        <h3>Server Analytics</h3>
-        <p>Get insights and statistics about your server activity.</p>
-      </div>
-      <div class="feature-card">
-        <div class="feature-emoji">🎮</div>
-        <h3>Engagement Tools</h3>
-        <p>Interactive polls, games, and leveling systems for your community.</p>
-      </div>
+      <div class="feature-card"><div class="feature-emoji">🛡️</div><h3>Automated Moderation</h3><p>Keep your server clean with advanced auto-moderation tools.</p></div>
+      <div class="feature-card"><div class="feature-emoji">⚡</div><h3>Custom Commands</h3><p>Create personalized commands to make your server unique.</p></div>
+      <div class="feature-card"><div class="feature-emoji">🎵</div><h3>Music Playback</h3><p>Stream high-quality music directly in your server.</p></div>
+      <div class="feature-card"><div class="feature-emoji">📊</div><h3>Server Analytics</h3><p>Get insights and statistics about your server activity.</p></div>
+      <div class="feature-card"><div class="feature-emoji">🎮</div><h3>Engagement Tools</h3><p>Interactive polls, games, and leveling systems for your community.</p></div>
     </div>
   </div>
 </section>
-
 
 <!-- Developer Section -->
 <section class="developer">
@@ -104,9 +95,7 @@
 
 <!-- Footer -->
 <footer>
-  <div>
-    &copy; 2025 <span class="brand">Lunov Dashboard</span>. All Rights Reserved.
-  </div>
+  <div>&copy; 2025 <span class="brand">Lunov Dashboard</span>. All Rights Reserved.</div>
   <div class="footer-links">
     <a href="https://lunovbot.github.io/">Home</a>
     <a href="https://lunovbot.github.io/commands">Commands</a>
@@ -115,8 +104,22 @@
   </div>
 </footer>
 
-
 <script>
+// Sidebar toggle
+const hamburger = document.getElementById('hamburger');
+const sidebar = document.getElementById('sidebar');
+const overlay = document.getElementById('overlay');
+
+hamburger.addEventListener('click', () => {
+  sidebar.classList.toggle('active');
+  overlay.classList.toggle('active');
+});
+overlay.addEventListener('click', () => {
+  sidebar.classList.remove('active');
+  overlay.classList.remove('active');
+});
+
+// Hero Card 3D tilt
 const panel = document.getElementById('help-panel');
 panel.addEventListener('mousemove', (e) => {
   const rect = panel.getBoundingClientRect();
@@ -128,36 +131,18 @@ panel.addEventListener('mousemove', (e) => {
 });
 panel.addEventListener('mouseleave', () => { panel.querySelector('.card-content').style.transform = `rotateY(0deg) rotateX(0deg)`; });
 
-// Features hover scroll
+// Features slider infinite scroll
 const slider = document.querySelector('.features-slider');
-let speed = 1;
-slider.addEventListener('mouseenter', ()=>speed=3);
-slider.addEventListener('mouseleave', ()=>speed=1);
+slider.innerHTML += slider.innerHTML; // duplicate cards
 let pos = 0;
-function animateSlider(){ pos -= speed; if(pos <= -slider.scrollWidth/2) pos=0; slider.style.transform=`translateX(${pos}px)`; requestAnimationFrame(animateSlider);}
-animateSlider();
-
-  const slider = document.querySelector('.features-slider');
-
-// Duplicate cards for seamless looping
-slider.innerHTML += slider.innerHTML;
-
-let pos = 0;
-const speed = 0.5; // Adjust speed (px per frame)
-
+const speed = 0.5;
 function loopSlider() {
   pos -= speed;
-  if(pos <= -slider.scrollWidth / 2) pos = 0;
+  if(pos <= -slider.scrollWidth/2) pos = 0;
   slider.style.transform = `translateX(${pos}px)`;
   requestAnimationFrame(loopSlider);
 }
-
 loopSlider();
-
-// Optional: pause on hover
-slider.addEventListener('mouseenter', () => { slider.style.animationPlayState = 'paused'; });
-slider.addEventListener('mouseleave', () => { slider.style.animationPlayState = 'running'; });
-  
 </script>
 
 </body>
