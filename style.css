@@ -166,8 +166,7 @@ nav a.active::after {
   background: linear-gradient(90deg, var(--accent1), var(--accent2));
   -webkit-background-clip: text;
   color: transparent;
-  justify-content: center;
-  text-decorator: underline;
+  text-align: center;
 }
 
 .features-slider {
@@ -177,6 +176,8 @@ nav a.active::after {
   justify-content: flex-start;
   perspective: 1200px;
   will-change: transform;
+  padding-top: 20px;
+  padding-bottom: 20px;
 }
 
 .feature-card {
