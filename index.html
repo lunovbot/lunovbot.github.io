@@ -1,44 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Lunov Dashboard — Home</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
-  <link rel="icon" href="assets/cropped_circle_image.png" type="image/png">
-  <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lunov Dashboard — Home</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+<link rel="icon" href="assets/cropped_circle_image.png" type="image/png">
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <!-- Header -->
-  <header>
-    <div class="logo">
-      <img class="logo-icon" src="assets/cropped_circle_image.png" alt="Lunov Logo">
-      <div class="logo-text">Lunov</div>
-    </div>
-    <nav>
-      <a href="#" class="active">Home</a>
-      <a href="#">Commands</a>
-      <a href="#">Servers</a>
-      <a href="#">Changelogs</a>
-      <a href="#">Support</a>
-      <a href="#" class="account-btn">Account</a>
-    </nav>
-  </header>
 
-  <!-- Hero Section -->
-  <section class="hero">
-    <div class="hero-layout">
-      <div class="hero-content">
-        <h1>Welcome to <span>Lunov</span> Dashboard</h1>
-        <p>Step into Lunov — a dynamic multipurpose bot with 80+ smart commands built to enhance your Discord experience. Automate tasks, manage servers, and keep your community engaged effortlessly.</p>
-        <div class="buttons">
-          <a href="https://discord.com/oauth2/authorize?client_id=1424366813789028412&permissions=268634146&integration_type=0&scope=bot+applications.commands" target="_blank" class="btn">Invite Me!</a>
-          <a href="https://discord.gg/94yRBfUF" target="_blank" class="btn">Support Server</a>
-          <a href="#" class="btn">Docs</a>
-          <a href="https://lunovbot.github.io/changelogs" class="btn">Changelogs</a>
-        </div>
+<!-- Header -->
+<header>
+  <div class="logo">
+    <img class="logo-icon" src="assets/cropped_circle_image.png" alt="Lunov Logo">
+    <div class="logo-text">Lunov</div>
+  </div>
+  <nav>
+    <a href="#" class="active">Home</a>
+    <a href="#">Commands</a>
+    <a href="#">Servers</a>
+    <a href="#">Changelogs</a>
+    <a href="#">Support</a>
+    <a href="#" class="account-btn">Account</a>
+  </nav>
+</header>
+
+<!-- Hero Section -->
+<section class="hero">
+  <div class="hero-layout">
+    <div class="hero-content">
+      <h1>Welcome to <span>Lunov</span> Dashboard</h1>
+      <p>Step into Lunov — a dynamic multipurpose bot with 80+ smart commands built to enhance your Discord experience. Automate tasks, manage servers, and keep your community engaged effortlessly.</p>
+      <div class="buttons">
+        <a href="https://discord.com/oauth2/authorize?client_id=1424366813789028412&permissions=268634146&integration_type=0&scope=bot+applications.commands" target="_blank" class="btn">Invite Me!</a>
+        <a href="https://discord.gg/94yRBfUF" target="_blank" class="btn">Support Server</a>
+        <a href="#" class="btn">Docs</a>
+        <a href="https://lunovbot.github.io/changelogs" class="btn">Changelogs</a>
       </div>
-      <div class="card">
+    </div>
+    <div class="card" id="help-panel">
+      <div class="card-content">
         <h2>Lunov Help Panel</h2>
         <p><strong>Prefix:</strong> <code>ln</code></p>
         <p><strong>Commands:</strong> 5+</p>
@@ -48,54 +50,55 @@
         <p><a href="https://discord.com/oauth2/authorize?client_id=1424366813789028412&permissions=268634146&integration_type=0&scope=bot+applications.commands">Invite Lunov</a></p>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- Features Section -->
-  <section class="features">
-    <h2 class="features-title">Features</h2>
-    <div class="features-container">
-      <div class="features-slider">
-        <div class="feature-card">
-          <div class="feature-emoji">🛡️</div>
-          <h3>Automated Moderation</h3>
-          <p>Keep your server clean with advanced auto-moderation tools.</p>
-        </div>
-        <div class="feature-card">
-          <div class="feature-emoji">⚡</div>
-          <h3>Custom Commands</h3>
-          <p>Create personalized commands to make your server unique.</p>
-        </div>
-        <div class="feature-card">
-          <div class="feature-emoji">🎵</div>
-          <h3>Music Playback</h3>
-          <p>Stream music directly into your server with high quality.</p>
-        </div>
-        <div class="feature-card">
-          <div class="feature-emoji">📊</div>
-          <h3>Server Analytics</h3>
-          <p>Get insights and statistics about your server activity.</p>
-        </div>
-        <div class="feature-card">
-          <div class="feature-emoji">🎮</div>
-          <h3>Engagement Tools</h3>
-          <p>Interactive polls, games, and leveling systems for your community.</p>
-        </div>
-        <!-- Duplicate for smooth loop -->
-        <div class="feature-card">
-          <div class="feature-emoji">🛡️</div>
-          <h3>Automated Moderation</h3>
-          <p>Keep your server clean with advanced auto-moderation tools.</p>
-        </div>
-        <div class="feature-card">
-          <div class="feature-emoji">⚡</div>
-          <h3>Custom Commands</h3>
-          <p>Create personalized commands to make your server unique.</p>
-        </div>
+<!-- Features Section -->
+<section class="features">
+  <h2 class="features-title">Features</h2>
+  <div class="features-container">
+    <div class="features-slider">
+      <div class="feature-card">
+        <div class="feature-emoji">🛡️</div>
+        <h3>Automated Moderation</h3>
+        <p>Keep your server clean with advanced auto-moderation tools.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-emoji">⚡</div>
+        <h3>Custom Commands</h3>
+        <p>Create personalized commands to make your server unique.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-emoji">🎵</div>
+        <h3>Music Playback</h3>
+        <p>Stream music directly into your server with high quality.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-emoji">📊</div>
+        <h3>Server Analytics</h3>
+        <p>Get insights and statistics about your server activity.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-emoji">🎮</div>
+        <h3>Engagement Tools</h3>
+        <p>Interactive polls, games, and leveling systems for your community.</p>
+      </div>
+      <!-- Duplicates for smooth loop -->
+      <div class="feature-card">
+        <div class="feature-emoji">🛡️</div>
+        <h3>Automated Moderation</h3>
+        <p>Keep your server clean with advanced auto-moderation tools.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-emoji">⚡</div>
+        <h3>Custom Commands</h3>
+        <p>Create personalized commands to make your server unique.</p>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- Developer Section -->
+<!-- Developer Section -->
 <section class="developer">
   <h2 class="developer-title">Developer</h2>
   <div class="developer-container">
@@ -112,10 +115,38 @@
   </div>
 </section>
 
+<!-- Footer -->
+<footer>
+  &copy; 2025 Lunov Dashboard. All Rights Reserved.
+</footer>
 
-  <!-- Footer -->
-  <footer>
-    &copy; 2025 Lunov Dashboard. All Rights Reserved.
-  </footer>
+<!-- JS for interactions -->
+<script>
+const panel = document.getElementById('help-panel');
+panel.addEventListener('mousemove', (e) => {
+  const rect = panel.getBoundingClientRect();
+  const x = e.clientX - rect.left;
+  const y = e.clientY - rect.top;
+  const cx = rect.width / 2;
+  const cy = rect.height / 2;
+  const dx = (x - cx) / cx;
+  const dy = (y - cy) / cy;
+  panel.querySelector('.card-content').style.transform = `rotateY(${dx*15}deg) rotateX(${-dy*15}deg)`;
+});
+panel.addEventListener('mouseleave', () => {
+  panel.querySelector('.card-content').style.transform = `rotateY(0deg) rotateX(0deg)`;
+});
+
+// Developer Card Floating
+const devCards = document.querySelectorAll('.developer-card');
+devCards.forEach(card => {
+  let pos = 0;
+  setInterval(() => {
+    pos = pos === 0 ? -5 : 0;
+    card.style.transform = `translateY(${pos}px) scale(1.05)`;
+  }, 2000);
+});
+</script>
+
 </body>
 </html>
