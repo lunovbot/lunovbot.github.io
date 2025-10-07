@@ -16,13 +16,13 @@
   --hero-bg: linear-gradient(135deg, #2c2f33 0%, #36393f 100%);
 }
 
-* { margin:0; padding:0; box-sizing:border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
-body { background: var(--hero-bg); color: #dcddde; line-height: 1.6; overflow-x:hidden; scroll-behavior: smooth; }
+* { margin:0; padding:0; box-sizing:border-box; font-family: 'Inter', sans-serif; }
+body { background: var(--hero-bg); color: #dcddde; line-height: 1.6; scroll-behavior: smooth; }
 a { text-decoration: none; color: inherit; }
 
 header {
   display: flex; align-items:center; justify-content:space-between;
-  width: 90%; max-width:1200px; margin: 20px auto 30px; padding: 15px 30px;
+  width: 90%; max-width:1200px; margin: 20px auto; padding: 15px 30px;
   background-color: rgba(47,49,54,0.9); border-radius:40px; backdrop-filter: blur(8px);
   box-shadow: 0 4px 15px rgba(0,0,0,0.3); position:relative; z-index:1000;
 }
@@ -31,8 +31,8 @@ header {
 .logo:hover .logo-icon { transform:rotate(10deg) scale(1.1); }
 .logo-text a { color:#fff; font-weight:600; font-size:1.2rem; }
 
-nav { display:flex; gap:10px; }
-nav a { color:#b9bbbe; padding:8px 12px; margin:0 6px; border-radius:6px; transition: all 0.3s; font-weight:500; }
+nav { display:flex; gap:10px; flex-wrap:wrap; }
+nav a { color:#b9bbbe; padding:8px 12px; border-radius:6px; transition: all 0.3s; font-weight:500; }
 nav a:hover, nav a.active { background: var(--accent1); color:#fff; }
 .account-btn { padding:6px 18px; border-radius:12px; border:1px solid var(--accent1); background:var(--accent1); color:#fff; font-weight:500; margin-left:10px; transition:all 0.3s; }
 .account-btn:hover { background:#fff; color:var(--accent1); transform: scale(1.1); }
@@ -41,9 +41,9 @@ nav a:hover, nav a.active { background: var(--accent1); color:#fff; }
 .hamburger div { width:25px; height:3px; background:#b9bbbe; border-radius:2px; transition:all 0.3s; }
 
 .sidebar {
-  position: fixed; top:0; left:-260px; width:260px; height:100%;
+  position: fixed; top:0; left:-280px; width:280px; height:100%;
   background: rgba(47,49,54,0.95); backdrop-filter:blur(8px); border-right:1px solid #202225;
-  padding:60px 20px; display:flex; flex-direction:column; gap:20px; transition:left 0.3s; z-index:1100;
+  padding:80px 20px; display:flex; flex-direction:column; gap:20px; transition:left 0.3s; z-index:1100;
 }
 .sidebar.active { left:0; }
 .sidebar a { color:#b9bbbe; font-weight:500; padding:10px; border-radius:10px; transition:all 0.3s; }
@@ -54,20 +54,36 @@ nav a:hover, nav a.active { background: var(--accent1); color:#fff; }
 }
 .overlay.active { display:block; }
 
-h1 { text-align:center; font-size:3rem; background: linear-gradient(90deg,var(--accent1),var(--accent2)); -webkit-background-clip:text; color:transparent; margin:30px 0 15px; }
-p.subtitle { text-align:center; color: var(--secondary-text); font-size:1.2rem; margin-bottom:50px; }
+.c-head {
+  text-align:center; margin:30px auto 50px;
+}
+h1 { font-size:3rem; background: linear-gradient(90deg,var(--accent1),var(--accent2)); -webkit-background-clip:text; color:transparent; }
+p.subtitle { color: var(--secondary-text); font-size:1.2rem; margin-top:10px; }
 
-/* Command Cards */
+#commandSearch {
+  padding: 10px 15px;
+  border-radius: 12px;
+  border: 1px solid var(--accent1);
+  outline: none;
+  width: 300px;
+  margin-top: 15px;
+  color: #fff;
+  background-color: var(--card-bg);
+  transition: all 0.3s;
+}
+#commandSearch:focus { border-color: var(--accent2); }
+
 .command-category {
-  width:90%; max-width:900px; margin:0 auto 30px; background:var(--card-bg); border:1px solid var(--card-border); border-radius:15px; overflow:hidden; box-shadow: 0 6px 20px rgba(79,209,197,0.1); transition: all 0.3s ease;
+  width:90%; max-width:900px; margin:0 auto 20px; background:var(--card-bg); border:1px solid var(--card-border); border-radius:15px; overflow:hidden; box-shadow: 0 6px 20px rgba(79,209,197,0.1); transition: all 0.3s ease;
 }
 .category-header {
-  padding:20px; cursor:pointer; display:flex; justify-content:space-between; align-items:center; background: rgba(79,209,197,0.1);
+  padding:18px 20px; cursor:pointer; display:flex; justify-content:space-between; align-items:center; background: rgba(79,209,197,0.1);
   font-weight:600; font-size:1.2rem; color:#fff;
+  transition: background 0.3s;
 }
-.category-header:hover { background: var(--accent1); color:#fff; }
-.category-header span { transition: transform 0.3s; }
-.category-header.active span { transform: rotate(90deg); }
+.category-header:hover { background: var(--accent1); }
+.category-header span.arrow { transition: transform 0.3s; }
+.category-header.active span.arrow { transform: rotate(90deg); }
 
 .category-body { display:none; padding:20px; color: var(--secondary-text); }
 .category-body ul { list-style: disc; padding-left:20px; }
@@ -81,8 +97,15 @@ footer .footer-links a { color: var(--accent1); transition: all 0.3s; }
 footer .footer-links a:hover { color: var(--accent2); transform: scale(1.1); }
 footer span.brand { background: linear-gradient(90deg,var(--accent1),var(--accent2)); -webkit-background-clip:text; color:transparent; font-weight:600; }
 
-@media(max-width:900px){ nav{display:none;} .hamburger{display:flex;} }
-
+@media(max-width:900px){
+  nav{display:none;}
+  .hamburger{display:flex;}
+}
+@media(max-width:600px){
+  #commandSearch { width:90%; }
+  .category-header { font-size:1rem; padding:15px; }
+  .category-body { padding:15px; }
+}
 </style>
 </head>
 <body>
@@ -117,72 +140,84 @@ footer span.brand { background: linear-gradient(90deg,var(--accent1),var(--accen
 
 <div class="c-head">
   <h1>Commands</h1>
-  <p>Explore all the commands Lunov Bot offers. Use the search to quickly find a command!</p>
-  <input type="text" id="commandSearch" placeholder="Search commands..." style="
-    padding: 10px 15px;
-    border-radius: 12px;
-    border: 1px solid var(--accent1);
-    outline: none;
-    width: 250px;
-    margin-top: 15px;
-    color: #fff;
-    background-color: var(--card-bg);
-  ">
+  <p class="subtitle">Explore all the commands Lunov Bot offers. Use the search to quickly find a command!</p>
+  <input type="text" id="commandSearch" placeholder="Search commands...">
 </div>
 
 <div class="command-list">
 
-  <div class="command-category" data-category="General">
-    <h2>💬 General</h2>
-    <ul>
-      <li><code>hello</code> — Greet the bot</li>
-      <li><code>ping</code> — Check bot latency</li>
-      <li><code>info [bot/@user/#channel/website]</code> — Shows info about the bot, a user, a channel, or the website</li>
-      <li><code>invite</code> — Get an invite link for Lunov</li>
-      <li><code>website</code> — Visit Lunov's website</li>
-      <li><code>echo &lt;message&gt;</code> — Make the bot repeat your message</li>
-      <li><code>roll [sides]</code> — Roll a dice</li>
-      <li><code>coinflip</code> — Flip a coin</li>
-      <li><code>8ball &lt;question&gt;</code> — Ask the magic 8-ball</li>
-      <li><code>poll "Question" option1 option2 ...</code> — Quick voting system</li>
-    </ul>
+  <!-- Example category -->
+  <div class="command-category">
+    <div class="category-header">
+      <span>💬 General</span>
+      <span class="arrow">▶</span>
+    </div>
+    <div class="category-body">
+      <ul>
+        <li><code>hello</code> — Greet the bot</li>
+        <li><code>ping</code> — Check bot latency</li>
+        <li><code>info [bot/@user/#channel/website]</code> — Shows info about the bot, a user, a channel, or the website</li>
+        <li><code>invite</code> — Get an invite link for Lunov</li>
+        <li><code>website</code> — Visit Lunov's website</li>
+        <li><code>echo &lt;message&gt;</code> — Make the bot repeat your message</li>
+        <li><code>roll [sides]</code> — Roll a dice</li>
+        <li><code>coinflip</code> — Flip a coin</li>
+        <li><code>8ball &lt;question&gt;</code> — Ask the magic 8-ball</li>
+        <li><code>poll "Question" option1 option2 ...</code> — Quick voting system</li>
+      </ul>
+    </div>
   </div>
 
-  <div class="command-category" data-category="Moderation">
-    <h2>🛠 Moderation (Server Owner Only)</h2>
-    <ul>
-      <li><code>kick @user [reason]</code> — Kick a user</li>
-      <li><code>ban @user [reason]</code> — Ban a user</li>
-      <li><code>unban username#1234</code> — Unban a user</li>
-      <li><code>clear [amount]</code> — Delete recent messages</li>
-    </ul>
+  <div class="command-category">
+    <div class="category-header">
+      <span>🛠 Moderation (Server Owner Only)</span>
+      <span class="arrow">▶</span>
+    </div>
+    <div class="category-body">
+      <ul>
+        <li><code>kick @user [reason]</code> — Kick a user</li>
+        <li><code>ban @user [reason]</code> — Ban a user</li>
+        <li><code>unban username#1234</code> — Unban a user</li>
+        <li><code>clear [amount]</code> — Delete recent messages</li>
+      </ul>
+    </div>
   </div>
 
-  <div class="command-category" data-category="Fun">
-    <h2>🎲 Fun & Utility</h2>
-    <ul>
-      <li><code>userinfo &lt;@user&gt;</code> — Shows information about a user</li>
-      <li><code>serverinfo</code> — Shows information about this server</li>
-      <li><code>roll [sides]</code> — Roll a dice</li>
-      <li><code>coinflip</code> — Flip a coin</li>
-      <li><code>8ball &lt;question&gt;</code> — Ask the magic 8-ball</li>
-      <li><code>poll "Question" option1 option2 ...</code> — Quick voting system</li>
-    </ul>
+  <div class="command-category">
+    <div class="category-header">
+      <span>🎲 Fun & Utility</span>
+      <span class="arrow">▶</span>
+    </div>
+    <div class="category-body">
+      <ul>
+        <li><code>userinfo &lt;@user&gt;</code> — Shows information about a user</li>
+        <li><code>serverinfo</code> — Shows information about this server</li>
+        <li><code>roll [sides]</code> — Roll a dice</li>
+        <li><code>coinflip</code> — Flip a coin</li>
+        <li><code>8ball &lt;question&gt;</code> — Ask the magic 8-ball</li>
+        <li><code>poll "Question" option1 option2 ...</code> — Quick voting system</li>
+      </ul>
+    </div>
   </div>
 
-  <div class="command-category" data-category="Economy">
-    <h2>💰 Economy</h2>
-    <ul>
-      <li><code>balance / bal [@user]</code> — Check your or another user's balance</li>
-      <li><code>work</code> — Earn random coins</li>
-      <li><code>daily</code> — Claim your daily reward</li>
-      <li><code>shop</code> — View available items</li>
-      <li><code>buy &lt;item&gt;</code> — Buy an item from the shop</li>
-      <li><code>inventory [@user]</code> — View your or another user's items</li>
-      <li><code>gamble &lt;amount&gt;</code> — Risk coins to try to win more</li>
-      <li><code>pay &lt;@user&gt; &lt;amount&gt;</code> — Send coins to someone</li>
-      <li><code>leaderboard</code> — Top richest users in the server</li>
-    </ul>
+  <div class="command-category">
+    <div class="category-header">
+      <span>💰 Economy</span>
+      <span class="arrow">▶</span>
+    </div>
+    <div class="category-body">
+      <ul>
+        <li><code>balance / bal [@user]</code> — Check your or another user's balance</li>
+        <li><code>work</code> — Earn random coins</li>
+        <li><code>daily</code> — Claim your daily reward</li>
+        <li><code>shop</code> — View available items</li>
+        <li><code>buy &lt;item&gt;</code> — Buy an item from the shop</li>
+        <li><code>inventory [@user]</code> — View your or another user's items</li>
+        <li><code>gamble &lt;amount&gt;</code> — Risk coins to try to win more</li>
+        <li><code>pay &lt;@user&gt; &lt;amount&gt;</code> — Send coins to someone</li>
+        <li><code>leaderboard</code> — Top richest users in the server</li>
+      </ul>
+    </div>
   </div>
 
 </div>
@@ -206,45 +241,30 @@ hamburger.addEventListener('click', () => { sidebar.classList.toggle('active'); 
 overlay.addEventListener('click', () => { sidebar.classList.remove('active'); overlay.classList.remove('active'); });
 
 // Collapsible categories
-const headers = document.querySelectorAll('.category-header');
-headers.forEach(header => {
+document.querySelectorAll('.category-header').forEach(header => {
   header.addEventListener('click', () => {
+    header.classList.toggle('active');
     const body = header.nextElementSibling;
-    const isActive = header.classList.contains('active');
-    if(isActive) {
-      header.classList.remove('active');
-      body.style.display = 'none';
-    } else {
-      header.classList.add('active');
-      body.style.display = 'block';
-    }
+    if(body.style.display === 'block') body.style.display = 'none';
+    else body.style.display = 'block';
   });
 });
 
-// Command search functionality
+// Command search
 const searchInput = document.getElementById('commandSearch');
-const commandCategories = document.querySelectorAll('.command-category');
-
 searchInput.addEventListener('input', () => {
   const query = searchInput.value.toLowerCase();
-
-  commandCategories.forEach(category => {
-    let hasMatch = false;
-    const items = category.querySelectorAll('ul li');
-
-    items.forEach(item => {
-      if (item.textContent.toLowerCase().includes(query)) {
-        item.style.display = '';
-        hasMatch = true;
-      } else {
-        item.style.display = 'none';
-      }
+  document.querySelectorAll('.command-category').forEach(cat => {
+    let found = false;
+    cat.querySelectorAll('li').forEach(li => {
+      if(li.textContent.toLowerCase().includes(query)){
+        li.style.display = '';
+        found = true;
+      } else li.style.display = 'none';
     });
-
-    category.style.display = hasMatch ? '' : 'none';
+    cat.style.display = found ? '' : 'none';
   });
 });
-  
 </script>
 
 </body>
