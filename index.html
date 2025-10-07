@@ -103,7 +103,18 @@
 </section>
 
 <!-- Footer -->
-<footer>&copy; 2025 Lunov Dashboard. All Rights Reserved.</footer>
+<footer>
+  <div>
+    &copy; 2025 <span class="brand">Lunov Dashboard</span>. All Rights Reserved.
+  </div>
+  <div class="footer-links">
+    <a href="https://lunovbot.github.io/">Home</a>
+    <a href="https://lunovbot.github.io/commands">Commands</a>
+    <a href="https://lunovbot.github.io/changelogs">Changelogs</a>
+    <a href="https://discord.gg/bQaDPh3fbF">Support</a>
+  </div>
+</footer>
+
 
 <script>
 const panel = document.getElementById('help-panel');
@@ -125,6 +136,28 @@ slider.addEventListener('mouseleave', ()=>speed=1);
 let pos = 0;
 function animateSlider(){ pos -= speed; if(pos <= -slider.scrollWidth/2) pos=0; slider.style.transform=`translateX(${pos}px)`; requestAnimationFrame(animateSlider);}
 animateSlider();
+
+  const slider = document.querySelector('.features-slider');
+
+// Duplicate cards for seamless looping
+slider.innerHTML += slider.innerHTML;
+
+let pos = 0;
+const speed = 0.5; // Adjust speed (px per frame)
+
+function loopSlider() {
+  pos -= speed;
+  if(pos <= -slider.scrollWidth / 2) pos = 0;
+  slider.style.transform = `translateX(${pos}px)`;
+  requestAnimationFrame(loopSlider);
+}
+
+loopSlider();
+
+// Optional: pause on hover
+slider.addEventListener('mouseenter', () => { slider.style.animationPlayState = 'paused'; });
+slider.addEventListener('mouseleave', () => { slider.style.animationPlayState = 'running'; });
+  
 </script>
 
 </body>
