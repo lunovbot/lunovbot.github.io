@@ -1,91 +1,164 @@
-<!DOCTYPE html> 
+<!DOCTYPE html>
 <html lang="en">
-   <head>
-      <meta charset="UTF-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <title>Lunov Dashboard — Home</title>
-      <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
-      <link rel="stylesheet" href="style.css">
-   </head>
-   <body>
-      <!-- Header --> 
-      <header>
-         <div class="logo">
-            <img class="logo-icon" src="assets/cropped_circle_image.png" alt="Lunov Logo"> 
-            <div class="logo-text">Lunov</div>
-         </div>
-         <nav> <a href="https://lunovbot.github.io/" class="active">Home</a> <a href="https://lunovbot.github.io/commands">Commands</a> <a href="https://lunovbot.github.io/servers">Servers</a> <a href="https://lunovbot.github.io/changelogs">Changelogs</a> <a href="https://discord.gg/bQaDPh3fbF">Support</a> <a href="#" class="account-btn">Account</a> </nav>
-      </header>
-      <!-- Hero Section --> 
-      <section class="hero">
-         <div class="hero-layout">
-            <div class="hero-content">
-               <h1>Welcome to <span>Lunov</span> Dashboard</h1>
-               <p>Step into Lunov — a dynamic multipurpose bot with 80+ smart commands built to enhance your Discord experience. Automate tasks, manage servers, and keep your community engaged effortlessly.</p>
-               <div class="buttons"> <a href="https://discord.com/oauth2/authorize?client_id=1424366813789028412&permissions=268634146&integration_type=0&scope=bot+applications.commands" class="btn">Invite Me!</a> <a href="https://discord.gg/bQaDPh3fbF" class="btn">Support Server</a> <a href="#" class="btn">Docs</a> <a href="https://lunovbot.github.io/changelogs" class="btn">Changelogs</a> </div>
-            </div>
-            <div class="card" id="help-panel">
-               <div class="card-content">
-                  <h2>Lunov Help Panel</h2>
-                  <p><strong>Prefix:</strong> <code>ln</code></p>
-                  <p><strong>Commands:</strong> 5+</p>
-                  <p><strong>Servers:</strong> 1</p>
-                  <p><strong>Ping:</strong> 65ms</p>
-                  <p><strong>Developer:</strong> <span class="dev">@parrot_games1</span></p>
-                  <p><a href="#">Invite Lunov</a></p>
-               </div>
-            </div>
-         </div>
-      </section>
-      <section class="features">
-         <h2 class="features-title">Features</h2>
-         <div class="features-container">
-            <div class="features-slider">
-               <div class="feature-card">
-                  <div class="feature-emoji">🛡️</div>
-                  <h3>Automated Moderation</h3>
-                  <p>Keep your server clean with advanced auto-moderation tools.</p>
-               </div>
-               <div class="feature-card">
-                  <div class="feature-emoji">⚡</div>
-                  <h3>Custom Commands</h3>
-                  <p>Create personalized commands to make your server unique.</p>
-               </div>
-               <div class="feature-card">
-                  <div class="feature-emoji">🎵</div>
-                  <h3>Music Playback</h3>
-                  <p>Stream high-quality music directly in your server.</p>
-               </div>
-               <div class="feature-card">
-                  <div class="feature-emoji">📊</div>
-                  <h3>Server Analytics</h3>
-                  <p>Get insights and statistics about your server activity.</p>
-               </div>
-               <div class="feature-card">
-                  <div class="feature-emoji">🎮</div>
-                  <h3>Engagement Tools</h3>
-                  <p>Interactive polls, games, and leveling systems for your community.</p>
-               </div>
-            </div>
-         </div>
-      </section>
-      <!-- Developer Section --> 
-      <section class="developer">
-         <h2 class="developer-title">Developer</h2>
-         <div class="developer-container">
-            <div class="developer-card">
-               <img src="assets/cropped_circle_image.png" alt="Developer" class="developer-img"> 
-               <h3>@parrot_games1</h3>
-               <p>Lead Developer & Bot Creator</p>
-               <div class="social-links"> <a href="#">GitHub</a> <a href="https://discord.gg/bQaDPh3fbF">Discord</a> </div>
-            </div>
-         </div>
-      </section>
-      <!-- Footer --> 
-      <footer>
-         <div> &copy; 2025 <span class="brand">Lunov Dashboard</span>. All Rights Reserved. </div>
-         <div class="footer-links"> <a href="https://lunovbot.github.io/">Home</a> <a href="https://lunovbot.github.io/commands">Commands</a> <a href="https://lunovbot.github.io/changelogs">Changelogs</a> <a href="https://discord.gg/bQaDPh3fbF">Support</a> </div>
-      </footer>
-      <script> const panel = document.getElementById('help-panel'); panel.addEventListener('mousemove', (e) => { const rect = panel.getBoundingClientRect(); const x = e.clientX - rect.left; const y = e.clientY - rect.top; const dx = (x - rect.width/2)/(rect.width/2); const dy = (y - rect.height/2)/(rect.height/2); panel.querySelector('.card-content').style.transform = rotateY(${dx*15}deg) rotateX(${-dy*15}deg); }); panel.addEventListener('mouseleave', () => { panel.querySelector('.card-content').style.transform = rotateY(0deg) rotateX(0deg); }); // Features hover scroll const slider = document.querySelector('.features-slider'); let speed = 1; slider.addEventListener('mouseenter', ()=>speed=3); slider.addEventListener('mouseleave', ()=>speed=1); let pos = 0; function animateSlider(){ pos -= speed; if(pos <= -slider.scrollWidth/2) pos=0; slider.style.transform=translateX(${pos}px); requestAnimationFrame(animateSlider);} animateSlider(); const slider = document.querySelector('.features-slider'); // Duplicate cards for seamless looping slider.innerHTML += slider.innerHTML; let pos = 0; const speed = 0.5; // Adjust speed (px per frame) function loopSlider() { pos -= speed; if(pos <= -slider.scrollWidth / 2) pos = 0; slider.style.transform = translateX(${pos}px); requestAnimationFrame(loopSlider); } loopSlider(); // Optional: pause on hover slider.addEventListener('mouseenter', () => { slider.style.animationPlayState = 'paused'; }); slider.addEventListener('mouseleave', () => { slider.style.animationPlayState = 'running'; }); </script> 
-   </body>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lunov Dashboard — Home</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- Header -->
+<header>
+  <div class="logo">
+    <img class="logo-icon" src="assets/cropped_circle_image.png" alt="Lunov Logo">
+    <div class="logo-text">Lunov</div>
+  </div>
+  <nav>
+    <a href="https://lunovbot.github.io/" class="active">Home</a>
+    <a href="https://lunovbot.github.io/commands">Commands</a>
+    <a href="https://lunovbot.github.io/servers">Servers</a>
+    <a href="https://lunovbot.github.io/changelogs">Changelogs</a>
+    <a href="https://discord.gg/bQaDPh3fbF">Support</a>
+    <a href="#" class="account-btn">Account</a>
+  </nav>
+</header>
+
+<!-- Hero Section -->
+<section class="hero">
+  <div class="hero-layout">
+    <div class="hero-content">
+      <h1>Welcome to <span>Lunov</span> Dashboard</h1>
+      <p>Step into Lunov — a dynamic multipurpose bot with 80+ smart commands built to enhance your Discord experience. Automate tasks, manage servers, and keep your community engaged effortlessly.</p>
+      <div class="buttons">
+        <a href="https://discord.com/oauth2/authorize?client_id=1424366813789028412&permissions=268634146&integration_type=0&scope=bot+applications.commands" class="btn">Invite Me!</a>
+        <a href="https://discord.gg/bQaDPh3fbF" class="btn">Support Server</a>
+        <a href="#" class="btn">Docs</a>
+        <a href="https://lunovbot.github.io/changelogs" class="btn">Changelogs</a>
+      </div>
+    </div>
+    <div class="card" id="help-panel">
+      <div class="card-content">
+        <h2>Lunov Help Panel</h2>
+        <p><strong>Prefix:</strong> <code>ln</code></p>
+        <p><strong>Commands:</strong> 5+</p>
+        <p><strong>Servers:</strong> 1</p>
+        <p><strong>Ping:</strong> 65ms</p>
+        <p><strong>Developer:</strong> <span class="dev">@parrot_games1</span></p>
+        <p><a href="#">Invite Lunov</a></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="features">
+  <h2 class="features-title">Features</h2>
+  <div class="features-container">
+    <div class="features-slider">
+      <div class="feature-card">
+        <div class="feature-emoji">🛡️</div>
+        <h3>Automated Moderation</h3>
+        <p>Keep your server clean with advanced auto-moderation tools.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-emoji">⚡</div>
+        <h3>Custom Commands</h3>
+        <p>Create personalized commands to make your server unique.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-emoji">🎵</div>
+        <h3>Music Playback</h3>
+        <p>Stream high-quality music directly in your server.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-emoji">📊</div>
+        <h3>Server Analytics</h3>
+        <p>Get insights and statistics about your server activity.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-emoji">🎮</div>
+        <h3>Engagement Tools</h3>
+        <p>Interactive polls, games, and leveling systems for your community.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- Developer Section -->
+<section class="developer">
+  <h2 class="developer-title">Developer</h2>
+  <div class="developer-container">
+    <div class="developer-card">
+      <img src="assets/cropped_circle_image.png" alt="Developer" class="developer-img">
+      <h3>@parrot_games1</h3>
+      <p>Lead Developer & Bot Creator</p>
+      <div class="social-links">
+        <a href="#">GitHub</a>
+        <a href="https://discord.gg/bQaDPh3fbF">Discord</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer>
+  <div>
+    &copy; 2025 <span class="brand">Lunov Dashboard</span>. All Rights Reserved.
+  </div>
+  <div class="footer-links">
+    <a href="https://lunovbot.github.io/">Home</a>
+    <a href="https://lunovbot.github.io/commands">Commands</a>
+    <a href="https://lunovbot.github.io/changelogs">Changelogs</a>
+    <a href="https://discord.gg/bQaDPh3fbF">Support</a>
+  </div>
+</footer>
+
+
+<script>
+const panel = document.getElementById('help-panel');
+panel.addEventListener('mousemove', (e) => {
+  const rect = panel.getBoundingClientRect();
+  const x = e.clientX - rect.left;
+  const y = e.clientY - rect.top;
+  const dx = (x - rect.width/2)/(rect.width/2);
+  const dy = (y - rect.height/2)/(rect.height/2);
+  panel.querySelector('.card-content').style.transform = `rotateY(${dx*15}deg) rotateX(${-dy*15}deg)`;
+});
+panel.addEventListener('mouseleave', () => { panel.querySelector('.card-content').style.transform = `rotateY(0deg) rotateX(0deg)`; });
+
+// Features hover scroll
+const slider = document.querySelector('.features-slider');
+let speed = 1;
+slider.addEventListener('mouseenter', ()=>speed=3);
+slider.addEventListener('mouseleave', ()=>speed=1);
+let pos = 0;
+function animateSlider(){ pos -= speed; if(pos <= -slider.scrollWidth/2) pos=0; slider.style.transform=`translateX(${pos}px)`; requestAnimationFrame(animateSlider);}
+animateSlider();
+
+  const slider = document.querySelector('.features-slider');
+
+// Duplicate cards for seamless looping
+slider.innerHTML += slider.innerHTML;
+
+let pos = 0;
+const speed = 0.5; // Adjust speed (px per frame)
+
+function loopSlider() {
+  pos -= speed;
+  if(pos <= -slider.scrollWidth / 2) pos = 0;
+  slider.style.transform = `translateX(${pos}px)`;
+  requestAnimationFrame(loopSlider);
+}
+
+loopSlider();
+
+// Optional: pause on hover
+slider.addEventListener('mouseenter', () => { slider.style.animationPlayState = 'paused'; });
+slider.addEventListener('mouseleave', () => { slider.style.animationPlayState = 'running'; });
+  
+</script>
+
+</body>
 </html>
