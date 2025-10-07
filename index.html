@@ -132,61 +132,67 @@
 
 
 <script>
-// Sidebar toggle
-const hamburger = document.getElementById('hamburger');
-const sidebar = document.getElementById('sidebar');
-const overlay = document.getElementById('overlay');
+document.addEventListener('DOMContentLoaded', () => {
+  // Sidebar toggle (safe guards)
+  const hamburger = document.getElementById('hamburger');
+  const sidebar = document.getElementById('sidebar');
+  const overlay = document.getElementById('overlay');
+  if (hamburger && sidebar && overlay) {
+    hamburger.addEventListener('click', () => {
+      sidebar.classList.toggle('active');
+      overlay.classList.toggle('active');
+    });
+    overlay.addEventListener('click', () => {
+      sidebar.classList.remove('active');
+      overlay.classList.remove('active');
+    });
+  }
 
-hamburger.addEventListener('click', () => {
-  sidebar.classList.toggle('active');
-  overlay.classList.toggle('active');
-});
-overlay.addEventListener('click', () => {
-  sidebar.classList.remove('active');
-  overlay.classList.remove('active');
-});
-  
-const panel = document.getElementById('help-panel');
-panel.addEventListener('mousemove', (e) => {
-  const rect = panel.getBoundingClientRect();
-  const x = e.clientX - rect.left;
-  const y = e.clientY - rect.top;
-  const dx = (x - rect.width/2)/(rect.width/2);
-  const dy = (y - rect.height/2)/(rect.height/2);
-  panel.querySelector('.card-content').style.transform = `rotateY(${dx*15}deg) rotateX(${-dy*15}deg)`;
-});
-panel.addEventListener('mouseleave', () => { panel.querySelector('.card-content').style.transform = `rotateY(0deg) rotateX(0deg)`; });
+  // 3D tilt for help panel (safe)
+  const panel = document.getElementById('help-panel');
+  if (panel) {
+    const content = panel.querySelector('.card-content');
+    panel.addEventListener('mousemove', (e) => {
+      const rect = panel.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      const dx = (x - rect.width / 2) / (rect.width / 2);
+      const dy = (y - rect.height / 2) / (rect.height / 2);
+      content.style.transform = `rotateY(${dx * 15}deg) rotateX(${-dy * 15}deg)`;
+    });
+    panel.addEventListener('mouseleave', () => {
+      content.style.transform = 'rotateY(0deg) rotateX(0deg)';
+    });
+  }
 
-// Features hover scroll
-const slider = document.querySelector('.features-slider');
-let speed = 1;
-slider.addEventListener('mouseenter', ()=>speed=3);
-slider.addEventListener('mouseleave', ()=>speed=1);
-let pos = 0;
-function animateSlider(){ pos -= speed; if(pos <= -slider.scrollWidth/2) pos=0; slider.style.transform=`translateX(${pos}px)`; requestAnimationFrame(animateSlider);}
-animateSlider();
-
+  // Features slider — single, robust implementation (no duplicate declarations)
   const slider = document.querySelector('.features-slider');
+  if (slider) {
+    // duplicate content only once for seamless loop
+    if (slider.dataset.duplicated !== 'true') {
+      slider.innerHTML = slider.innerHTML + slider.innerHTML;
+      slider.dataset.duplicated = 'true';
+    }
 
-// Duplicate cards for seamless looping
-slider.innerHTML += slider.innerHTML;
+    let pos = 0;
+    let speed = 0.5; // px per frame — adjust to taste
+    let isPaused = false;
 
-let pos = 0;
-const speed = 0.5; // Adjust speed (px per frame)
+    slider.addEventListener('mouseenter', () => { isPaused = true; });
+    slider.addEventListener('mouseleave', () => { isPaused = false; });
 
-function loopSlider() {
-  pos -= speed;
-  if(pos <= -slider.scrollWidth / 2) pos = 0;
-  slider.style.transform = `translateX(${pos}px)`;
-  requestAnimationFrame(loopSlider);
-}
-
-loopSlider();
-
-// Optional: pause on hover
-slider.addEventListener('mouseenter', () => { slider.style.animationPlayState = 'paused'; });
-slider.addEventListener('mouseleave', () => { slider.style.animationPlayState = 'running'; });
-  
+    function loop() {
+      if (!isPaused) {
+        pos -= speed;
+        const resetPoint = slider.scrollWidth / 2;
+        if (Math.abs(pos) >= resetPoint) pos = 0;
+        slider.style.transform = `translateX(${pos}px)`;
+      }
+      requestAnimationFrame(loop);
+    }
+    requestAnimationFrame(loop);
+  }
+});
 </script>
 
 </body>
