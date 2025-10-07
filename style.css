@@ -22,8 +22,8 @@ body {
   color: #dcddde;
   line-height: 1.6;
   overflow-x: hidden;
-  perspective: 1000px;
   scroll-behavior: smooth;
+  perspective: 1000px;
 }
 
 /* Links */
@@ -42,19 +42,20 @@ header {
   border-radius: 40px;
   backdrop-filter: blur(8px);
   box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-  animation: fadeDown 1s forwards;
 }
 .logo { display: flex; align-items: center; gap: 10px; }
 .logo-icon { border-radius: 50%; height: 38px; width: 38px; transform: rotate(-10deg); transition: transform 0.5s; }
 .logo:hover .logo-icon { transform: rotate(10deg) scale(1.1); }
-nav a { 
+
+nav { display: flex; gap: 10px; }
+nav a {
   color: #b9bbbe;
   padding: 8px 12px;
   margin: 0 6px;
   border-radius: 6px;
-  position: relative;
-  transition: all 0.3s ease;
   font-weight: 500;
+  transition: all 0.3s ease;
+  position: relative;
 }
 nav a:hover, nav a.active { background-color: var(--accent1); color: #fff; }
 nav a.active::after {
@@ -67,6 +68,7 @@ nav a.active::after {
   background-color: var(--accent2);
   border-radius: 2px;
 }
+
 .account-btn {
   padding: 6px 18px;
   border-radius: 12px;
@@ -80,12 +82,41 @@ nav a.active::after {
 }
 .account-btn:hover { background-color: #fff; color: var(--accent1); transform: scale(1.1); }
 
+/* Hamburger Menu */
+.hamburger { display: none; flex-direction: column; cursor: pointer; gap: 5px; }
+.hamburger div { width: 25px; height: 3px; background: #b9bbbe; border-radius: 2px; transition: all 0.3s; }
+
+/* Sidebar */
+.sidebar {
+  position: fixed; top: 0; left: -260px;
+  width: 260px; height: 100%;
+  background: rgba(47,49,54,0.95);
+  backdrop-filter: blur(8px);
+  border-right: 1px solid #202225;
+  padding: 60px 20px;
+  display: flex; flex-direction: column; gap: 20px;
+  transition: left 0.3s;
+  z-index: 1100;
+}
+.sidebar.active { left: 0; }
+.sidebar a {
+  color: #b9bbbe;
+  font-weight: 500;
+  padding: 10px;
+  border-radius: 10px;
+  transition: all 0.3s;
+}
+.sidebar a:hover, .sidebar a.active { background: var(--accent1); color: #fff; }
+
+/* Overlay */
+.overlay { display: none; position: fixed; top:0; left:0; width:100%; height:100%; background: rgba(0,0,0,0.4); z-index:1050; transition: opacity 0.3s; }
+.overlay.active { display: block; }
+
 /* Hero Section */
 .hero {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
   text-align: center;
   padding: 80px 20px;
   position: relative;
@@ -108,7 +139,7 @@ nav a.active::after {
   100% { transform: rotate(360deg) translate(0,0);}
 }
 .hero-layout { display: flex; flex-direction: column; align-items: center; gap: 60px; position: relative; z-index: 1; }
-.hero h1 { font-size: 3.5rem; font-weight: 800; background: linear-gradient(90deg, var(--accent1), var(--accent2)); -webkit-background-clip: text; color: transparent; text-shadow: 0 0 10px rgba(79,209,197,0.5);}
+.hero h1 { font-size: 3.5rem; font-weight: 800; background: linear-gradient(90deg, var(--accent1), var(--accent2)); -webkit-background-clip: text; color: transparent; text-shadow: 0 0 10px rgba(79,209,197,0.5); }
 .hero h1 span { color: var(--secondary-text); }
 .hero p { font-size: 1.2rem; color: var(--secondary-text); margin-top: 15px; line-height: 1.7; }
 .buttons { margin-top: 25px; display: flex; flex-wrap: wrap; gap: 15px; justify-content: center; }
@@ -123,7 +154,7 @@ nav a.active::after {
 }
 .btn:hover { background: var(--accent1); color: #fff; box-shadow: 0 0 15px var(--accent1), 0 0 25px var(--accent2); transform: scale(1.1); }
 
-/* Hero Help Panel */
+/* Hero Card */
 .card {
   background: var(--card-bg);
   border: 1px solid var(--card-border);
@@ -133,13 +164,10 @@ nav a.active::after {
   box-shadow: 0 8px 25px rgba(79,209,197,0.15);
   transition: transform 0.2s ease, box-shadow 0.2s ease;
   perspective: 1200px;
-  animation: float 4s ease-in-out infinite;
 }
 .card:hover { box-shadow: 0 25px 60px rgba(79,209,197,0.5); }
 .card-content { transform-style: preserve-3d; transition: transform 0.15s ease; }
-.card p strong, .card p span {
-  transition: 0.3s;
-}
+.card p strong, .card p span { transition: 0.3s; }
 .card p strong:hover, .card p span:hover { color: var(--accent2); text-shadow: 0 0 15px var(--accent2); }
 
 /* Features Section */
@@ -189,22 +217,9 @@ nav a.active::after {
   display: inline-block;
 }
 
-.feature-card h3 {
-  font-size: 1.3rem;
-  margin-bottom: 10px;
-  color: var(--accent1);
-  transition: color 0.3s;
-}
-
-.feature-card:hover h3 {
-  color: var(--accent2);
-}
-
-.feature-card p {
-  font-size: 1rem;
-  line-height: 1.5;
-  color: var(--secondary-text);
-}
+.feature-card h3 { font-size: 1.3rem; margin-bottom: 10px; color: var(--accent1); transition: color 0.3s; }
+.feature-card:hover h3 { color: var(--accent2); }
+.feature-card p { font-size: 1rem; line-height: 1.5; color: var(--secondary-text); }
 
 /* Developer Section */
 .developer {
@@ -237,16 +252,9 @@ nav a.active::after {
 .social-links a { margin: 0 5px; color: var(--accent1); transition: transform 0.3s; }
 .social-links a:hover { transform: scale(1.2) rotate(-5deg); }
 
-/* Floating Animations */
-@keyframes float { 0%, 100% { transform: translateY(0);} 50% { transform: translateY(-10px);} }
-@keyframes fadeUp { 0% { opacity: 0; transform: translateY(20px);} 100% { opacity:1; transform: translateY(0);} }
-@keyframes fadeDown { 0% { opacity:0; transform:translateY(-20px);} 100% {opacity:1; transform:translateY(0);} }
-
-/* Responsive */
-@media (min-width:900px){.hero-layout{flex-direction:row;justify-content:space-between;text-align:left;width:85%;}}
-
+/* Footer */
 footer {
-  background-color: rgba(47, 49, 54, 0.95);
+  background-color: rgba(47,49,54,0.95);
   backdrop-filter: blur(8px);
   padding: 25px 20px;
   display: flex;
@@ -257,28 +265,28 @@ footer {
   color: var(--neutral);
   font-size: 0.9rem;
 }
-
 footer .footer-links {
   display: flex;
   gap: 20px;
   flex-wrap: wrap;
   justify-content: center;
 }
-
 footer .footer-links a {
   color: var(--accent1);
   transition: color 0.3s, transform 0.3s;
   font-weight: 500;
 }
-
-footer .footer-links a:hover {
-  color: var(--accent2);
-  transform: scale(1.1);
-}
-
+footer .footer-links a:hover { color: var(--accent2); transform: scale(1.1); }
 footer span.brand {
   background: linear-gradient(90deg, var(--accent1), var(--accent2));
   -webkit-background-clip: text;
   color: transparent;
   font-weight: 600;
+}
+
+/* Responsive */
+@media(max-width:900px){
+  nav { display: none; }
+  .hamburger { display: flex; }
+  .hero-layout { flex-direction: column; text-align: center; }
 }
