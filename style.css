@@ -156,9 +156,10 @@ nav a.active::after {
 .features-slider {
   display: flex;
   gap: 40px;
-  flex-wrap: wrap;
-  justify-content: center;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
   perspective: 1200px;
+  will-change: transform;
 }
 
 .feature-card {
@@ -243,3 +244,41 @@ nav a.active::after {
 
 /* Responsive */
 @media (min-width:900px){.hero-layout{flex-direction:row;justify-content:space-between;text-align:left;width:85%;}}
+
+footer {
+  background-color: rgba(47, 49, 54, 0.95);
+  backdrop-filter: blur(8px);
+  padding: 25px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  box-shadow: 0 -4px 20px rgba(0,0,0,0.2);
+  color: var(--neutral);
+  font-size: 0.9rem;
+}
+
+footer .footer-links {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+footer .footer-links a {
+  color: var(--accent1);
+  transition: color 0.3s, transform 0.3s;
+  font-weight: 500;
+}
+
+footer .footer-links a:hover {
+  color: var(--accent2);
+  transform: scale(1.1);
+}
+
+footer span.brand {
+  background: linear-gradient(90deg, var(--accent1), var(--accent2));
+  -webkit-background-clip: text;
+  color: transparent;
+  font-weight: 600;
+}
