@@ -41,8 +41,7 @@ header {
   top: 20px;
   left: 50%;
   transform: translateX(-50%);
-  width: 92%;
-  max-width: 1200px;
+  width: clamp(80%, 92%, 1200px); /* keeps it fluid + centered */
   padding: 18px 35px;
   background: rgba(47, 49, 54, 0.85);
   border: 1px solid rgba(79, 209, 197, 0.15);
@@ -54,6 +53,7 @@ header {
   transition: all 0.35s ease;
   z-index: 2000;
   box-shadow: 0 6px 25px rgba(0, 0, 0, 0.25);
+  margin: 0 auto; /* ✅ centers even if something pushes it */
 }
 
 header.scrolled {
