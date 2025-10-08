@@ -50,11 +50,14 @@ header {
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
   animation: fadeDown 1s forwards;
 
-  /* 👇 Added for sticky header */
-  position: sticky;
+  /* 👇 Fixes the header to the top during scroll */
+  position: fixed;
   top: 0;
+  left: 50%;
+  transform: translateX(-50%);
   z-index: 1000;
 }
+
 
 
 .logo {
