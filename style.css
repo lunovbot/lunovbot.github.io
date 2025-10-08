@@ -37,24 +37,30 @@ a { text-decoration: none; color: inherit; }
 
 /* Header */
 header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  width: 90%;
-  max-width: 1200px;
-  padding: 15px 30px;
-  background-color: rgba(47, 49, 54, 0.9);
-  border-radius: 40px;
-  backdrop-filter: blur(8px);
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-  animation: fadeDown 1s forwards;
-
-  /* 🔒 Keeps header visible while scrolling */
   position: fixed;
   top: 20px;
   left: 50%;
   transform: translateX(-50%);
+  width: 92%;
+  max-width: 1200px;
+  padding: 18px 35px;
+  background: rgba(47, 49, 54, 0.85);
+  border: 1px solid rgba(79, 209, 197, 0.15);
+  border-radius: 30px;
+  backdrop-filter: blur(12px);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: all 0.35s ease;
   z-index: 2000;
+  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.25);
+}
+
+header.scrolled {
+  padding: 10px 25px;
+  background: rgba(47, 49, 54, 0.95);
+  border-radius: 20px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
 }
 
 .logo {
@@ -76,11 +82,14 @@ header {
 }
 
 .logo-text a {
-  text-decoration: none;
+  font-weight: 700;
+  font-size: 1.3rem;
+  letter-spacing: 0.5px;
   color: #fff;
-  font-weight: 600;
-  font-size: 1.2rem;
+  transition: color 0.3s ease;
 }
+
+.logo-text a:hover { color: var(--accent1); }
 
 nav {
   display: flex;
@@ -88,33 +97,48 @@ nav {
 }
 
 nav a {
-  color: #b9bbbe;
-  padding: 8px 12px;
-  margin: 0 6px;
-  border-radius: 6px;
   position: relative;
-  transition: all 0.3s ease;
+  color: var(--secondary-text);
+  padding: 8px 14px;
+  margin: 0 6px;
   font-weight: 500;
-  text-decoration: none;
+  transition: all 0.3s ease;
 }
 
-nav a:hover, nav a.active {
-  background-color: var(--accent1);
-  color: #fff;
+nav a::after {
+  content: "";
+  position: absolute;
+  bottom: 3px;
+  left: 50%;
+  width: 0%;
+  height: 2px;
+  background: var(--accent1);
+  border-radius: 2px;
+  transform: translateX(-50%);
+  transition: width 0.3s ease;
 }
+
+nav a:hover::after, nav a.active::after {
+  width: 60%;
+}
+nav a:hover { color: #fff; }
 
 .account-btn {
-  padding: 6px 18px;
+  padding: 7px 18px;
   border-radius: 12px;
   border: 1px solid var(--accent1);
   background-color: var(--accent1);
   color: #fff;
-  font-weight: 500;
-  margin-left: 10px;
+  font-weight: 600;
+  box-shadow: 0 0 10px var(--accent1);
   transition: all 0.3s ease;
-  box-shadow: 0 0 8px var(--accent1);
 }
-.account-btn:hover { background-color: #fff; color: var(--accent1); transform: scale(1.1); }
+.account-btn:hover {
+  background-color: #fff;
+  color: var(--accent1);
+  transform: scale(1.05);
+  box-shadow: 0 0 20px var(--accent2);
+}
 
 /* === Hamburger (for mobile) === */
 .hamburger {
