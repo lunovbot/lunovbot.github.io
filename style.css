@@ -161,20 +161,21 @@ nav a:hover { color: #fff; }
 /* === Sidebar === */
 .sidebar {
   position: fixed;
-  top: 0;
+  top: 80px; /* was 0 — moves below the header */
   left: -260px;
   width: 260px;
-  height: 100%;
+  height: calc(100% - 80px); /* adjust height since it starts lower */
   background: rgba(47, 49, 54, 0.95);
   backdrop-filter: blur(8px);
   border-right: 1px solid #202225;
-  padding: 60px 20px;
+  padding: 40px 20px;
   display: flex;
   flex-direction: column;
   gap: 20px;
   transition: left 0.3s;
   z-index: 1100;
 }
+
 .sidebar.active { left: 0; }
 .sidebar a {
   color: #b9bbbe;
