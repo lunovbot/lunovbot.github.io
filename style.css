@@ -51,7 +51,7 @@ header {
   justify-content: space-between;
   align-items: center;
   transition: all 0.35s ease;
-  z-index: 2000;
+  z-index: 1000;
   box-shadow: 0 6px 25px rgba(0, 0, 0, 0.25);
   margin: 0 auto; /* ✅ centers even if something pushes it */
 }
@@ -161,14 +161,14 @@ nav a:hover { color: #fff; }
 /* === Sidebar === */
 .sidebar {
   position: fixed;
-  top: 80px; /* was 0 — moves below the header */
+  top: 0;
   left: -260px;
   width: 260px;
-  height: calc(100% - 80px); /* adjust height since it starts lower */
+  height: 100%;
   background: rgba(47, 49, 54, 0.95);
   backdrop-filter: blur(8px);
   border-right: 1px solid #202225;
-  padding: 40px 20px;
+  padding: 60px 20px;
   display: flex;
   flex-direction: column;
   gap: 20px;
