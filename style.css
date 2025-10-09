@@ -23,19 +23,26 @@
 }
 
 ::-webkit-scrollbar-track {
-  background: rgba(47,49,54,0.5);
+  background: rgba(47, 49, 54, 0.3); /* subtle dark track */
   border-radius: 10px;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--accent1);
+  background: linear-gradient(180deg, var(--accent1), var(--accent2)); /* gradient thumb */
   border-radius: 10px;
-  border: 2px solid rgba(47,49,54,0.5);
-  transition: background 0.3s ease;
+  border: 2px solid rgba(47, 49, 54, 0.3); /* creates spacing for glow */
+  box-shadow: 0 0 6px var(--accent1), 0 0 10px var(--accent2); /* soft neon glow */
+  transition: all 0.3s ease;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--accent2);
+  background: linear-gradient(180deg, var(--accent2), var(--accent1));
+  box-shadow: 0 0 12px var(--accent2), 0 0 18px var(--accent1);
+}
+
+/* Optional: scrollbar corner (for when both vertical and horizontal appear) */
+::-webkit-scrollbar-corner {
+  background: rgba(47, 49, 54, 0.3);
 }
 
 /* Body */
