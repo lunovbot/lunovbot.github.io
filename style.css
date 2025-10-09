@@ -16,10 +16,9 @@
   --hero-bg: linear-gradient(135deg, #2c2f33 0%, #36393f 100%);
 }
 
-::-webkit-scrollbar {
-  width: 4px;
-  height:12px;
-  color: var(--accent1);
+::-webkit-scrollbar-thumb {
+  background-color: var(--accent1);
+  border-radius: 10px;
 }
 
 /* Body */
