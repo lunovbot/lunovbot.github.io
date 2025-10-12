@@ -81,6 +81,8 @@ header {
   z-index: 1000;
   box-shadow: 0 6px 25px rgba(0, 0, 0, 0.25);
   margin: 0 auto;
+  underline: none;
+  text-decoration: none;
 }
 
 header.scrolled {
@@ -114,6 +116,7 @@ header.scrolled {
   letter-spacing: 0.5px;
   color: #fff;
   transition: color 0.3s ease;
+  text-decoration: none;
 }
 
 .logo-text a:hover { 
@@ -528,11 +531,14 @@ document.addEventListener('DOMContentLoaded', () => {
     {id:4, title:"Changelog 4", date:"October 6, 2025", changes:["Added help command and fixed some bugs related to the info command."]},
     {id:5, title:"Changelog 5", date:"October 7, 2025", changes:["Added Invite command"]},
     {id:6, title:"Changelog 6", date:"October 8, 2025", changes:["Added Poll command and website commands and updated some fixes!"]},
-    {id:7, title:"Changelog 7", date:"October 9, 2025", changes:["Added level [@user] — Show your or another user's level. And work command gives u lunov coins"]}
+    {id:7, title:"Changelog 7", date:"October 9, 2025", changes:["Added level [@user] — Show your or another user's level. And work command gives u lunov coins"]},
+    {id:8, title:"Changelog 8", date:"October 10, 2025", changes:["Added Economy System - Lunites"]},
+    {id:9, title:"Changelog 9", date:"October 11, 2025", changes:["Added balance, work, daily commnads and Shop and Yep fixed some more issues"]},
+    {id:10, title:"Changelog 10", date:"October 12, 2025", changes:["Added Ticket System by which you can create tickets and added buy, inventory, gamble and slot commands"]}
   ];
 
   let currentPage = 1;
-  const itemsPerPage = 5;
+  const itemsPerPage = 10;
 
   const changelogList = document.getElementById('changelogList');
   const prevPageBtn = document.getElementById('prevPage');
