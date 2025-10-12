@@ -90,6 +90,15 @@ nav a {
   transition: all 0.3s ease;
 }
 
+nav a.active {
+  color: #fff;
+}
+
+nav a.active::after {
+  width: 60%;
+  background: var(--accent2);
+}
+
 nav a::after {
   content: "";
   position: absolute;
@@ -254,11 +263,13 @@ footer span.brand { background: linear-gradient(90deg,var(--accent1),var(--accen
     <a href="https://lunovbot.github.io/commands" class="active">Commands</a>
     <a href="https://lunovbot.github.io/servers">Servers</a>
     <a href="https://lunovbot.github.io/changelogs">Changelogs</a>
-    <a href="https://discord.gg/bQaDPh3fbF">Support</a>
+    <a href="https://discord.gg/bQaDPh3fbF" target="_blank">Support</a>
     <a href="#" class="account-btn">Account</a>
   </nav>
   <div class="hamburger" id="hamburger">
-    <div></div><div></div><div></div>
+    <div></div>
+    <div></div>
+    <div></div>
   </div>
 </header>
 
