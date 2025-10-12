@@ -6,11 +6,468 @@
 <title>Lunov Dashboard — Servers</title>
 <link rel="icon" href="assets/cropped_circle_image.png" type="image/png">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css">
+<style>
+/* === Global Styles === */
+:root {
+  --accent1: #4fd1c5;
+  --accent2: #2e8bff;
+  --secondary-text: #b9bbbe;
+  --card-bg: #2f3136;
+  --card-border: #202225;
+  --neutral: #72767d;
+  --hero-bg: linear-gradient(135deg, #2c2f33 0%, #36393f 100%);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Inter', sans-serif;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(47, 49, 54, 0.3);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, var(--accent1), var(--accent2));
+  border-radius: 10px;
+  border: 2px solid rgba(47, 49, 54, 0.3);
+  box-shadow: 0 0 6px var(--accent1), 0 0 10px var(--accent2);
+  transition: all 0.3s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, var(--accent2), var(--accent1));
+  box-shadow: 0 0 12px var(--accent2), 0 0 18px var(--accent1);
+}
+
+::-webkit-scrollbar-corner {
+  background: rgba(47, 49, 54, 0.3);
+}
+
+body {
+  background: var(--hero-bg);
+  color: #dcddde;
+  line-height: 1.6;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+}
+
+a { 
+  text-decoration: none; 
+  color: inherit; 
+}
+
+/* Header */
+header {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: clamp(80%, 92%, 1200px);
+  padding: 18px 35px;
+  background: rgba(47, 49, 54, 0.85);
+  border: 1px solid rgba(79, 209, 197, 0.15);
+  border-radius: 30px;
+  backdrop-filter: blur(12px);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: all 0.35s ease;
+  z-index: 1000;
+  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.25);
+  margin: 0 auto;
+}
+
+header.scrolled {
+  padding: 10px 25px;
+  background: rgba(47, 49, 54, 0.95);
+  border-radius: 20px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logo-icon {
+  border-radius: 50%;
+  height: 38px;
+  width: 38px;
+  transform: rotate(-10deg);
+  transition: transform 0.5s;
+}
+
+.logo:hover .logo-icon {
+  transform: rotate(10deg) scale(1.1);
+}
+
+.logo-text a {
+  font-weight: 700;
+  font-size: 1.3rem;
+  letter-spacing: 0.5px;
+  color: #fff;
+  transition: color 0.3s ease;
+}
+
+.logo-text a:hover { 
+  color: var(--accent1); 
+}
+
+nav {
+  display: flex;
+  gap: 10px;
+}
+
+nav a {
+  position: relative;
+  color: var(--secondary-text);
+  padding: 8px 14px;
+  margin: 0 6px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+nav a.active {
+  color: #fff;
+}
+
+nav a.active::after {
+  width: 60%;
+  background: var(--accent2);
+}
+
+nav a::after {
+  content: "";
+  position: absolute;
+  bottom: 3px;
+  left: 50%;
+  width: 0%;
+  height: 2px;
+  background: var(--accent1);
+  border-radius: 2px;
+  transform: translateX(-50%);
+  transition: width 0.3s ease;
+}
+
+nav a:hover::after, nav a.active::after {
+  width: 60%;
+}
+
+nav a:hover { 
+  color: #fff; 
+}
+
+.account-btn {
+  padding: 7px 18px;
+  border-radius: 12px;
+  border: 1px solid var(--accent1);
+  background-color: var(--accent1);
+  color: #fff;
+  font-weight: 600;
+  box-shadow: 0 0 10px var(--accent1);
+  transition: all 0.3s ease;
+}
+
+.account-btn:hover {
+  background-color: #fff;
+  color: var(--accent1);
+  transform: scale(1.05);
+  box-shadow: 0 0 20px var(--accent2);
+}
+
+/* Hamburger */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+  gap: 5px;
+}
+
+.hamburger div {
+  width: 26px;
+  height: 3px;
+  background: var(--secondary-text);
+  border-radius: 2px;
+  transition: all 0.3s ease;
+}
+
+.hamburger.active div:nth-child(1) { 
+  transform: rotate(45deg) translate(5px, 5px); 
+}
+
+.hamburger.active div:nth-child(2) { 
+  opacity: 0; 
+}
+
+.hamburger.active div:nth-child(3) { 
+  transform: rotate(-45deg) translate(6px, -6px); 
+}
+
+/* Sidebar */
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: -260px;
+  width: 260px;
+  height: 100%;
+  background: rgba(47, 49, 54, 0.95);
+  backdrop-filter: blur(8px);
+  border-right: 1px solid #202225;
+  padding: 60px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  transition: left 0.3s;
+  z-index: 1200;
+}
+
+.sidebar.active { 
+  left: 0; 
+}
+
+.sidebar a {
+  color: #b9bbbe;
+  text-decoration: none;
+  font-weight: 500;
+  padding: 10px;
+  border-radius: 10px;
+  transition: all 0.3s;
+}
+
+.sidebar a:hover, .sidebar a.active {
+  background: var(--accent1);
+  color: #fff;
+}
+
+/* Overlay */
+.overlay {
+  display: none;
+  position: fixed;
+  top: 0; 
+  left: 0;
+  width: 100%; 
+  height: 100%;
+  background: rgba(0,0,0,0.4);
+  z-index: 1150;
+  transition: opacity 0.3s;
+}
+
+.overlay.active { 
+  display: block; 
+}
+
+/* Hero Section */
+.hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 80px 20px;
+  position: relative;
+  overflow: hidden;
+  margin-top: 140px;
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  top: -20%;
+  left: -10%;
+  width: 120%;
+  height: 120%;
+  background: radial-gradient(circle at 30% 30%, rgba(79,209,197,0.1), transparent 60%);
+  animation: move-bg 20s linear infinite;
+  z-index: 0;
+}
+
+@keyframes move-bg {
+  0% { transform: rotate(0deg) translate(0,0);}
+  50% { transform: rotate(180deg) translate(20px,20px);}
+  100% { transform: rotate(360deg) translate(0,0);}
+}
+
+.hero-layout { 
+  display: flex; 
+  flex-direction: column; 
+  align-items: center; 
+  gap: 60px; 
+  position: relative; 
+  z-index: 1; 
+}
+
+.hero h1 { 
+  font-size: 3.5rem; 
+  font-weight: 800; 
+  background: linear-gradient(90deg, var(--accent1), var(--accent2)); 
+  -webkit-background-clip: text; 
+  color: transparent; 
+  text-shadow: 0 0 10px rgba(79,209,197,0.5);
+}
+
+.hero h1 span { 
+  color: var(--secondary-text); 
+}
+
+.hero p { 
+  font-size: 1.2rem; 
+  color: var(--secondary-text); 
+  margin-top: 15px; 
+  line-height: 1.7; 
+  max-width: 600px;
+}
+
+/* Servers Section */
+.servers {
+  margin: 80px 20px;
+  text-align: center;
+}
+
+.servers-title {
+  font-size: 2.5rem;
+  margin-bottom: 40px;
+  background: linear-gradient(90deg, var(--accent1), var(--accent2));
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+.servers-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 30px;
+}
+
+.server-card {
+  background: var(--card-bg);
+  border-radius: 25px;
+  padding: 25px;
+  width: 250px;
+  text-align: center;
+  color: var(--secondary-text);
+  box-shadow: 0 6px 20px rgba(79,209,197,0.1);
+  transition: transform 0.5s ease, box-shadow 0.5s ease;
+}
+
+.server-card:hover {
+  transform: translateY(-10px) rotateY(5deg) scale(1.05);
+  box-shadow: 0 20px 50px rgba(79,209,197,0.4);
+}
+
+.server-card img {
+  border-radius: 50%;
+  width: 80px;
+  height: 80px;
+  margin-bottom: 15px;
+}
+
+.server-card h3 {
+  color: var(--accent1);
+  margin-bottom: 10px;
+}
+
+.server-card p {
+  font-size: 0.95rem;
+  margin-bottom: 10px;
+}
+
+.server-card .btn {
+  margin-top: 10px;
+  padding: 8px 22px;
+  border-radius: 10px;
+  border: 2px solid var(--accent1);
+  color: var(--accent1);
+  background: transparent;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  display: inline-block;
+}
+
+.server-card .btn:hover { 
+  background: var(--accent1); 
+  color: #fff; 
+  box-shadow: 0 0 15px var(--accent1), 0 0 25px var(--accent2); 
+  transform: scale(1.1); 
+}
+
+/* Footer */
+footer {
+  background-color: rgba(47, 49, 54, 0.95);
+  backdrop-filter: blur(8px);
+  padding: 25px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  box-shadow: 0 -4px 20px rgba(0,0,0,0.2);
+  color: var(--neutral);
+  font-size: 0.9rem;
+}
+
+footer .footer-links {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+footer .footer-links a {
+  color: var(--accent1);
+  transition: color 0.3s, transform 0.3s;
+  font-weight: 500;
+}
+
+footer .footer-links a:hover {
+  color: var(--accent2);
+  transform: scale(1.1);
+}
+
+footer span.brand {
+  background: linear-gradient(90deg, var(--accent1), var(--accent2));
+  -webkit-background-clip: text;
+  color: transparent;
+  font-weight: 600;
+}
+
+/* Responsive */
+@media(max-width:900px){
+  nav { 
+    display: none; 
+  }
+  
+  .hamburger { 
+    display: flex; 
+  }
+  
+  .hero h1 {
+    font-size: 2.5rem;
+  }
+}
+
+@media(min-width:900px){
+  .hero-layout {
+    flex-direction: row;
+    justify-content: space-between;
+    text-align: left;
+    width: 85%;
+  }
+}
+</style>
 </head>
 <body>
 
-<!-- Header (same as home) -->
+<!-- Header -->
 <header>
   <div class="logo">
     <img class="logo-icon" src="assets/cropped_circle_image.png" alt="Lunov Logo">
@@ -81,7 +538,7 @@
   </div>
 </section>
 
-<!-- Footer (same as home) -->
+<!-- Footer -->
 <footer>
   <div>
     &copy; 2025 <span class="brand">Lunov Dashboard</span>. All Rights Reserved.
@@ -96,6 +553,33 @@
   </div>
 </footer>
 
-<script src="script.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  // Header scroll effect
+  const header = document.querySelector('header');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 50) {
+      header.classList.add('scrolled');
+    } else {
+      header.classList.remove('scrolled');
+    }
+  });
+
+  // Sidebar toggle
+  const hamburger = document.getElementById('hamburger');
+  const sidebar = document.getElementById('sidebar');
+  const overlay = document.getElementById('overlay');
+
+  hamburger.addEventListener('click', () => {
+    sidebar.classList.toggle('active');
+    overlay.classList.toggle('active');
+  });
+
+  overlay.addEventListener('click', () => {
+    sidebar.classList.remove('active');
+    overlay.classList.remove('active');
+  });
+});
+</script>
 </body>
 </html>
